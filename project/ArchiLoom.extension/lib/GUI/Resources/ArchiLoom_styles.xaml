@@ -1,0 +1,545 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ============================================================ -->
+    <!-- ArchiLoom UI Standard v2  —  SINGLE SOURCE OF TRUTH          -->
+    <!-- Rules & rationale: Resources/UI_GUIDELINE.md                 -->
+    <!--                                                              -->
+    <!-- Colour law (mirrors the logo: one long green stroke + ONE     -->
+    <!-- short red stroke):                                           -->
+    <!--   green    = identity only  -> header band, selected row,     -->
+    <!--              checkbox mark, success                           -->
+    <!--   coral    = ONE region per window -> the primary action,     -->
+    <!--              plus the 2px accent rule under the header        -->
+    <!--   neutral  = everything else -> text, labels, borders,        -->
+    <!--              table lines, secondary buttons (90% of the UI)   -->
+    <!--   semantic = message bars and table diff cells only           -->
+    <!--                                                              -->
+    <!-- Type scale: exactly 5 sizes (20 / 14 / 13 / 12 / 11) and      -->
+    <!-- exactly 2 weights (Normal 400 / SemiBold 600). No Bold.       -->
+    <!-- ============================================================ -->
+
+
+    <!-- ==== 1. PALETTE ============================================ -->
+
+    <!-- Green — identity -->
+    <SolidColorBrush x:Key="green_50"         Color="#EEF5F1" />
+    <SolidColorBrush x:Key="green_100"        Color="#DCEAE2" />
+    <SolidColorBrush x:Key="green_200"        Color="#B9D5C5" />
+    <SolidColorBrush x:Key="green_400"        Color="#74AF8B" />
+    <SolidColorBrush x:Key="green_500"        Color="#5EA079" />
+    <SolidColorBrush x:Key="green_600"        Color="#4E8A67" />
+    <SolidColorBrush x:Key="green_700"        Color="#3D6E52" />
+
+    <!-- Coral — action -->
+    <SolidColorBrush x:Key="coral_50"         Color="#FDEEEA" />
+    <SolidColorBrush x:Key="coral_100"        Color="#FAD9D1" />
+    <SolidColorBrush x:Key="coral_200"        Color="#F5B8A9" />
+    <SolidColorBrush x:Key="coral_400"        Color="#EF7F68" />
+    <SolidColorBrush x:Key="coral_500"        Color="#EB664B" />
+    <SolidColorBrush x:Key="coral_600"        Color="#D8543B" />
+    <SolidColorBrush x:Key="coral_700"        Color="#B44530" />
+
+    <!-- Neutral — structure (slightly green-tinted greys, to match the logo) -->
+    <SolidColorBrush x:Key="neutral_000"      Color="#FFFFFF" />
+    <SolidColorBrush x:Key="neutral_50"       Color="#F7F9F8" />
+    <SolidColorBrush x:Key="neutral_100"      Color="#EFF2F0" />
+    <SolidColorBrush x:Key="neutral_200"      Color="#E2E6E4" />
+    <SolidColorBrush x:Key="neutral_300"      Color="#CBD1CE" />
+    <SolidColorBrush x:Key="neutral_400"      Color="#A3ACA8" />
+    <SolidColorBrush x:Key="neutral_500"      Color="#78827E" />
+    <SolidColorBrush x:Key="neutral_600"      Color="#5A6360" />
+    <SolidColorBrush x:Key="neutral_700"      Color="#3F4643" />
+    <SolidColorBrush x:Key="neutral_800"      Color="#2E3230" />
+    <SolidColorBrush x:Key="neutral_900"      Color="#1E2120" />
+
+    <!-- Semantic — message bars + table diff cells ONLY -->
+    <SolidColorBrush x:Key="info_text"        Color="#2F6B85" />
+    <SolidColorBrush x:Key="info_bg"          Color="#EDF4F8" />
+    <SolidColorBrush x:Key="info_border"      Color="#C3DBE6" />
+    <SolidColorBrush x:Key="warn_text"        Color="#9A6B15" />
+    <SolidColorBrush x:Key="warn_bg"          Color="#FBF3E3" />
+    <SolidColorBrush x:Key="warn_border"      Color="#EBD6A8" />
+    <SolidColorBrush x:Key="success_text"     Color="#3D6E52" />
+    <SolidColorBrush x:Key="success_bg"       Color="#EEF5F1" />
+    <SolidColorBrush x:Key="success_border"   Color="#B9D5C5" />
+    <SolidColorBrush x:Key="danger_text"      Color="#B44530" />
+    <SolidColorBrush x:Key="danger_bg"        Color="#FDEEEA" />
+    <SolidColorBrush x:Key="danger_border"    Color="#F5B8A9" />
+
+    <!-- Diff highlight (table cells): old value = danger_bg, new value = success_bg -->
+    <SolidColorBrush x:Key="diff_old_bg"      Color="#FDEEEA" />
+    <SolidColorBrush x:Key="diff_new_bg"      Color="#EEF5F1" />
+
+
+    <!-- ==== 2. LEGACY ALIASES ===================================== -->
+    <!-- Every key the existing XAML files already reference. Keeping  -->
+    <!-- them means the whole extension re-skins with ZERO per-file    -->
+    <!-- edits. Do not use these in NEW files — use the names above.   -->
+
+    <SolidColorBrush x:Key="brand_green"      Color="#5EA079" />
+    <SolidColorBrush x:Key="brand_green_dark" Color="#4E8A67" />
+    <SolidColorBrush x:Key="brand_red"        Color="#EB664B" />
+    <SolidColorBrush x:Key="brand_red_dark"   Color="#D8543B" />
+    <SolidColorBrush x:Key="bg_window"        Color="#FFFFFF" />
+    <SolidColorBrush x:Key="bg_input"         Color="#FFFFFF" />
+    <SolidColorBrush x:Key="border_input"     Color="#CBD1CE" />
+    <SolidColorBrush x:Key="grid_line"        Color="#EFF2F0" />
+    <SolidColorBrush x:Key="text_dark"        Color="#2E3230" />
+    <SolidColorBrush x:Key="text_muted"       Color="#78827E" />
+    <SolidColorBrush x:Key="text_on_brand"    Color="#FFFFFF" />
+    <!-- CHANGED in v2: field labels are neutral, not coral. This one line
+         removes the red-label noise from every existing dialog at once. -->
+    <SolidColorBrush x:Key="text_label"       Color="#5A6360" />
+
+
+    <!-- ==== 3. TYPE SCALE ========================================= -->
+    <!-- 5 sizes only. Reference them instead of typing numbers:
+         FontSize="{StaticResource fs_body}"                          -->
+
+    <sys:Double x:Key="fs_title">20</sys:Double>   <!-- header band title      -->
+    <sys:Double x:Key="fs_section">14</sys:Double> <!-- group heading in body  -->
+    <sys:Double x:Key="fs_body">13</sys:Double>    <!-- inputs, buttons, body  -->
+    <sys:Double x:Key="fs_label">12</sys:Double>   <!-- labels, help, cells    -->
+    <sys:Double x:Key="fs_overline">11</sys:Double><!-- overline, step, badge  -->
+
+    <FontFamily x:Key="font_ui">Segoe UI</FontFamily>
+    <FontFamily x:Key="font_mono">Consolas</FontFamily>
+
+
+    <!-- ==== 4. TEXT STYLES ======================================== -->
+
+    <!-- Default: body text, neutral 800, 13/400 -->
+    <Style TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_800}"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+    </Style>
+
+    <!-- Title on the green header band. 20/SemiBold, white. -->
+    <Style x:Key="TitleText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_title}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Group heading inside the body. 14/SemiBold, neutral 900. -->
+    <Style x:Key="SectionText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_section}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_900}"/>
+    </Style>
+
+    <!-- Overline / step marker / small caps label. 11/SemiBold, tracked. -->
+    <Style x:Key="OverlineText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_overline}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_500}"/>
+        <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+    </Style>
+
+    <!-- Tool description under the header + any secondary help text.
+         12/400 neutral 500, wraps. -->
+    <Style x:Key="HelpText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_500}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="LineHeight" Value="18"/>
+    </Style>
+
+    <!-- Data: Element ID, parameter name, mm value, file path. Consolas 12. -->
+    <Style x:Key="MonoText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_mono}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_700}"/>
+    </Style>
+
+    <!-- Field labels. 12/SemiBold neutral 600 (was coral in v1). -->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_600}"/>
+        <Setter Property="Padding" Value="0,0,8,0"/>
+    </Style>
+
+
+    <!-- ==== 5. RULES & DIVIDERS =================================== -->
+
+    <!-- The coral accent rule. Sits DIRECTLY under the green header band,
+         edge to edge, no margin — it is the window's single red stroke.
+         Usage: <Border Style="{StaticResource AccentRule}"/>             -->
+    <Style x:Key="AccentRule" TargetType="Border">
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="Background" Value="{StaticResource coral_500}"/>
+    </Style>
+
+    <!-- Neutral hairline between body groups / above the footer.
+         Usage: <Border Style="{StaticResource Rule}"/>                   -->
+    <Style x:Key="Rule" TargetType="Border">
+        <Setter Property="Height" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource neutral_100}"/>
+    </Style>
+
+    <!-- LEGACY: v1's inset coral divider. Existing files use it; new files
+         should use AccentRule (edge-to-edge) + Rule instead. -->
+    <Style x:Key="Divider" TargetType="Border">
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="Background" Value="{StaticResource coral_500}"/>
+        <Setter Property="Margin" Value="16,4,16,12"/>
+    </Style>
+
+
+    <!-- ==== 6. BUTTONS ============================================ -->
+    <!--   default        = neutral outline (Cancel/Close/Browse/...)   -->
+    <!--   PrimaryButton  = coral filled  — ONE per window              -->
+    <!--   OutlineButton  = green ghost 26px (safe row/toolbar action)  -->
+    <!--   OutlineButtonRed = coral ghost 26px (destructive)            -->
+    <!--   HeaderIconButton = borderless white glyph on the green band  -->
+
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="MinWidth" Value="92"/>
+        <Setter Property="Padding" Value="16,0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="{StaticResource neutral_000}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_700}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_300}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="4"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource neutral_100}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource neutral_400}"/>
+                <Setter Property="Foreground" Value="{StaticResource neutral_900}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource neutral_400}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource neutral_200}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{StaticResource coral_500}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource coral_500}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource coral_600}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource coral_600}"/>
+                <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource coral_200}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource coral_200}"/>
+                <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="OutlineButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Padding" Value="12,0"/>
+        <Setter Property="Foreground" Value="{StaticResource green_700}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource green_200}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource green_50}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource green_400}"/>
+                <Setter Property="Foreground" Value="{StaticResource green_700}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="OutlineButtonRed" TargetType="Button" BasedOn="{StaticResource OutlineButton}">
+        <Setter Property="Foreground" Value="{StaticResource coral_700}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource coral_200}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource coral_50}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource coral_400}"/>
+                <Setter Property="Foreground" Value="{StaticResource coral_700}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Ô chọn chế độ trong dialog "chọn-là-chạy" (UniformGrid 2x2, không có nút xác nhận).
+         Focus dùng chung trạng thái với hover: bàn phím và chuột nhìn giống nhau. -->
+    <Style x:Key="ModeCardButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="MinHeight" Value="64"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{StaticResource neutral_000}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_200}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_800}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource green_50}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource green_500}"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="{StaticResource green_50}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource green_500}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Chip số 1-4 đứng đầu mỗi ModeCardButton — vừa là "icon" vừa là phím tắt. -->
+    <Style x:Key="ModeCardChip" TargetType="Border">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Background" Value="{StaticResource neutral_100}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Minimize / Maximize / Close on the header band. -->
+    <Style x:Key="HeaderIconButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="28"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource green_600}"/>
+                <Setter Property="Foreground" Value="{StaticResource neutral_000}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!-- ==== 7. INPUTS ============================================= -->
+
+    <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="Padding" Value="8,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{StaticResource neutral_000}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_800}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_300}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="SelectionBrush" Value="{StaticResource green_400}"/>
+        <Style.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource green_500}"/>
+            </Trigger>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="{StaticResource neutral_50}"/>
+                <Setter Property="Foreground" Value="{StaticResource neutral_500}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource neutral_200}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Mono variant for IDs / numeric input.
+         Usage: <TextBox Style="{StaticResource MonoTextBox}"/>          -->
+    <Style x:Key="MonoTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="FontFamily" Value="{StaticResource font_mono}"/>
+    </Style>
+
+    <!-- Invalid state — set from code-behind when validation fails:
+         self.input_new.Style = self.Resources["TextBoxInvalid"]         -->
+    <Style x:Key="TextBoxInvalid" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="BorderBrush" Value="{StaticResource coral_500}"/>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="Padding" Value="6,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_800}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_300}"/>
+    </Style>
+
+    <!-- CheckBox / RadioButton: neutral text (was coral SemiBold in v1),
+         the mark itself carries the green. -->
+    <Style TargetType="CheckBox">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_body}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_700}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type CheckBox}}"/>
+
+    <Style TargetType="ProgressBar">
+        <Setter Property="Height" Value="6"/>
+        <Setter Property="Background" Value="{StaticResource neutral_100}"/>
+        <Setter Property="Foreground" Value="{StaticResource green_500}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+
+    <!-- ==== 8. MESSAGE BARS ======================================= -->
+    <!-- One bar, directly above the footer. Never more than one at a
+         time. Usage:
+           <Border Style="{StaticResource MessageInfo}">
+               <TextBlock Style="{StaticResource MessageInfoText}"
+                          Text="12 detail items in the current view."/>
+           </Border>                                                    -->
+
+    <Style x:Key="MessageInfo" TargetType="Border">
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="10,8"/>
+        <Setter Property="Background" Value="{StaticResource info_bg}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource info_border}"/>
+    </Style>
+    <Style x:Key="MessageInfoText" TargetType="TextBlock" BasedOn="{StaticResource HelpText}">
+        <Setter Property="Foreground" Value="{StaticResource info_text}"/>
+    </Style>
+
+    <Style x:Key="MessageWarn" TargetType="Border" BasedOn="{StaticResource MessageInfo}">
+        <Setter Property="Background" Value="{StaticResource warn_bg}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource warn_border}"/>
+    </Style>
+    <Style x:Key="MessageWarnText" TargetType="TextBlock" BasedOn="{StaticResource HelpText}">
+        <Setter Property="Foreground" Value="{StaticResource warn_text}"/>
+    </Style>
+
+    <Style x:Key="MessageSuccess" TargetType="Border" BasedOn="{StaticResource MessageInfo}">
+        <Setter Property="Background" Value="{StaticResource success_bg}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource success_border}"/>
+    </Style>
+    <Style x:Key="MessageSuccessText" TargetType="TextBlock" BasedOn="{StaticResource HelpText}">
+        <Setter Property="Foreground" Value="{StaticResource success_text}"/>
+    </Style>
+
+    <Style x:Key="MessageDanger" TargetType="Border" BasedOn="{StaticResource MessageInfo}">
+        <Setter Property="Background" Value="{StaticResource danger_bg}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource danger_border}"/>
+    </Style>
+    <Style x:Key="MessageDangerText" TargetType="TextBlock" BasedOn="{StaticResource HelpText}">
+        <Setter Property="Foreground" Value="{StaticResource danger_text}"/>
+    </Style>
+
+
+    <!-- ==== 9. TABLES (ListView + GridView) ======================= -->
+    <!-- v2 rule: NO vertical cell lines. Horizontal hairlines only,
+         neutral_50 header strip, green_50 selected row.                -->
+
+    <Style x:Key="TableHeaderStyle" TargetType="GridViewColumnHeader">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_600}"/>
+        <Setter Property="Background" Value="{StaticResource neutral_50}"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="Padding" Value="8,0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_200}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    </Style>
+
+    <!-- Row hairline. Wrap each CellTemplate's content in this instead of
+         the v1 GridCellBorder (which drew an Excel-style vertical grid).  -->
+    <Style x:Key="RowLine" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_100}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Padding" Value="8,6"/>
+    </Style>
+
+    <!-- Diff cells inside a table row. -->
+    <Style x:Key="CellOldValue" TargetType="TextBlock" BasedOn="{StaticResource MonoText}">
+        <Setter Property="Foreground" Value="{StaticResource danger_text}"/>
+        <Setter Property="Background" Value="{StaticResource diff_old_bg}"/>
+    </Style>
+    <Style x:Key="CellNewValue" TargetType="TextBlock" BasedOn="{StaticResource MonoText}">
+        <Setter Property="Foreground" Value="{StaticResource success_text}"/>
+        <Setter Property="Background" Value="{StaticResource diff_new_bg}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <!-- Plain table cell text. -->
+    <Style x:Key="CellText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource font_ui}"/>
+        <Setter Property="FontSize" Value="{StaticResource fs_label}"/>
+        <Setter Property="Foreground" Value="{StaticResource neutral_800}"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <!-- Row container: stretches cells to the full column width (WPF's
+         GridView quirk) AND paints the selected row green_50 instead of
+         the OS accent blue. -->
+    <Style x:Key="TableRowStretch" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{StaticResource neutral_000}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}">
+                        <GridViewRowPresenter Content="{TemplateBinding Content}"
+                                              Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource neutral_50}"/>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource green_50}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- The ListView frame itself.
+         Usage: <ListView Style="{StaticResource Table}"
+                          ItemContainerStyle="{StaticResource TableRowStretch}"> -->
+    <Style x:Key="Table" TargetType="ListView">
+        <Setter Property="Background" Value="{StaticResource neutral_000}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_200}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TableRowStretch}"/>
+    </Style>
+
+    <!-- LEGACY: v1's per-cell Excel grid. Kept so existing dialogs still
+         load; new files use RowLine. -->
+    <Style x:Key="GridCellBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{StaticResource neutral_100}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,40 @@
+# === OS ===
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# === Editors ===
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+
+# === Python ===
+*.pyc
+__pycache__/
+
+# === ArchiLoom dev ===
+*.bak
+*.v1.bak
+
+# === Claude Design prototype (not production) ===
+*.dc.html
+support.js
+Canvas.dc.html
+.thumbnail
+
+# === Cursor assets for prototype only ===
+cursor-arch-24.png
+cursor-arch-32.png
+cursor-poly.png
+
+# === Uploads / design staging (already in docs/assets/) ===
+project/uploads/
+
+# === Project wrapper (design staging folder) ===
+project/*.dc.html
+project/support.js
+project/.thumbnail
+project/cursor-*.png
+project/Canvas.dc.html
