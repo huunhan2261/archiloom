@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArchiLoom — pyRevit extension for detailing &amp; family housekeeping</title>
+<meta name="description" content="ArchiLoom is a Revit ribbon tab of 20 small, sharp tools across 4 panels for detailing and family housekeeping — renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts.">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #EFF2F0; font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, sans-serif; color: #2E3230; }
+  a { color: #B44530; text-decoration: none; border-bottom: 1px solid #F5B8A9; }
+  a:hover { color: #EB664B; border-bottom-color: #EB664B; }
+  html { scroll-behavior: smooth; }
+
+  .nav-link { font-size: 13px; color: #3F4643; border-bottom: none; }
+  .nav-link:hover { color: #1E2120; }
+
+  .btn-outline { background: #FFFFFF; border: 1px solid #CBD1CE; color: #3F4643; }
+  .btn-outline:hover { background: #EFF2F0; border-color: #A3ACA8; color: #1E2120; }
+
+  .btn-primary { background: #EB664B; color: #FFFFFF; border: none; }
+  .btn-primary:hover { background: #D8543B; }
+
+  .tool-card { border: 1px solid #E2E6E4; background: #FFFFFF; }
+  .tool-card:hover { border-color: #B9D5C5; background: #F7F9F8; }
+
+  .footer-link { color: #CBD1CE; border-bottom: 1px solid #5A6360; }
+  .footer-link:hover { color: #FFFFFF; border-bottom-color: #A3ACA8; }
+
+  @media (max-width: 1024px) {
+    [data-r="hero"], [data-r="faqouter"], [data-r="panelrow"], [data-r="faqrow"] { grid-template-columns: 1fr !important; }
+    [data-r="faqrow"] { gap: 8px !important; }
+    [data-r="hero"] { gap: 40px !important; }
+    [data-r="mock"] { width: 100% !important; max-width: 420px !important; }
+    [data-r="three"] { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 720px) {
+    [data-r="three"], [data-r="toolgrid"] { grid-template-columns: 1fr !important; }
+    [data-r="h1"] { font-size: 32px !important; }
+    [data-r="navlinks"] { display: none !important; }
+    [data-r="footrow"] { flex-wrap: wrap !important; gap: 12px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div style="min-height: 100%;">
+
+  <div style="position: sticky; top: 0; z-index: 20;">
+    <div style="height: 4px; background: #5EA079;"></div>
+    <div style="background: #FFFFFF; height: 56px; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
+      <div style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 28px;">
+        <img src="assets/logo.png" alt="ArchiLoom" style="height: 24px; width: auto; display: block;">
+        <div style="flex: 1;"></div>
+        <div data-r="navlinks" style="display: flex; align-items: center; gap: 28px;">
+          <a href="#tools" class="nav-link">Tools</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+        </div>
+        <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 30px; padding: 0 16px; border-radius: 4px; font-size: 13px; font-weight: 600; display: flex; align-items: center;">GitHub</a>
+      </div>
+    </div>
+    <div style="height: 2px; background: #EB664B;"></div>
+  </div>
+
+  <section style="display: flex; justify-content: center; padding: 72px 24px 64px;">
+    <div style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: center;" data-r="hero">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">pyRevit extension · Revit 2021–2026</div>
+        <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em;">Detailing and family housekeeping, without the click marathon.</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.</p>
+        <div style="display: flex; gap: 10px; align-items: center; padding-top: 4px;">
+          <a href="https://github.com/huunhan2261/archiloom/releases/latest" class="btn-primary" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Download latest</a>
+          <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Source on GitHub</a>
+        </div>
+        <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">20</div>
+            <div style="font-size: 12px; color: #78827E;">tools</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">4</div>
+            <div style="font-size: 12px; color: #78827E;">ribbon panels</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">MIT</div>
+            <div style="font-size: 12px; color: #78827E;">license</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 420px;">
+        <div data-r="mock" style="width: 420px; background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 2px; box-shadow: 0 18px 44px rgba(30,33,32,0.16);">
+          <div style="height: 52px; background: #5EA079; display: flex; align-items: center; padding: 0 8px 0 16px;">
+            <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF;">Select 2D Elements</div>
+            <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+          </div>
+          <div style="height: 2px; background: #EB664B;"></div>
+          <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E;">Pick a category — the window closes immediately and you drag-select in the view. No Finish button.</div>
+          <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div style="border: 1px solid #5EA079; background: #EEF5F1; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 20px; height: 20px; border-radius: 4px; background: #5EA079; color: #FFFFFF; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">1</div>
+                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Tags</div>
+              </div>
+              <div style="font-size: 12px; font-family: Consolas, monospace; color: #3D6E52;">128 in view</div>
+            </div>
+            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">2</div>
+                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Detail Items</div>
+              </div>
+              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">64 in view</div>
+            </div>
+            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">3</div>
+                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Filled Region</div>
+              </div>
+              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">12 in view</div>
+            </div>
+            <div style="border: 1px solid #E2E6E4; background: #F7F9F8; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #A3ACA8; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">4</div>
+                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #A3ACA8;">Lines</div>
+              </div>
+              <div style="font-size: 12px; font-family: Consolas, monospace; color: #A3ACA8;">none in view</div>
+            </div>
+          </div>
+          <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+          <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
+            <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+            <div style="flex: 1;"></div>
+            <div style="font-size: 12px; color: #78827E;"><span style="font-family: Consolas, monospace;">1–4</span> or click · <span style="font-family: Consolas, monospace;">Esc</span> to cancel</div>
+          </div>
+        </div>
+        <div style="font-size: 12px; color: #78827E;">Actual dialog — one green band, one coral action, nothing else competing.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4; border-bottom: 1px solid #E2E6E4;">
+    <div style="width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 36px;">
+      <div style="display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid #E2E6E4; padding-bottom: 18px;">
+        <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">What's inside</div>
+          <div style="font-size: 26px; font-weight: 600; color: #1E2120;">The tab, panel by panel</div>
+        </div>
+        <div style="font-size: 13px; line-height: 1.65; color: #78827E; width: 340px;">Order on the ribbon follows each panel's <span style="font-family: Consolas, monospace; font-size: 12px;">bundle.yaml</span>. Every button ships a tooltip with a short How-to.</div>
+      </div>
+
+      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Detailing</div>
+          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Detailing.panel</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Detail items, line styles and sheet layouts — the repetitive half of documentation.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">9 tools</div>
+        </div>
+        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type Excel Sync</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Export detail types to Excel, edit Type Mark and Description, import back through a diff review before anything is written.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type List</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">One searchable list of every detail type in the model, with sheet references and placed counts.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Layout</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Place and align detail items on a grid instead of nudging them one by one.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Views</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Jump to every view where a detail item is placed, straight from the list.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Sync Detail Item Params</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Push shared parameter values across matching detail items in one transaction.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Select 2D Elements</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Pick a 2D category, the window closes and you drag-select only that category in the view.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Save Sheet Layout</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Store the viewport arrangement of a sheet as a reusable layout.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Apply Sheet Layout</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Drop a saved layout onto other sheets so a set stays consistent.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Manage Line Styles</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Review, rename and purge line styles; Quick Line Style assigns one to a selection in a keystroke.</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Family</div>
+          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Family.panel</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Naming and cleanup for families and types — bulk edits with a preview you can trust.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">6 tools</div>
+        </div>
+        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Rename</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Find, replace, prefix and suffix across families, with a before/after preview and duplicate handling.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Type Rename</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">The same rule engine applied one level down, at type level.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Rename</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rename the family of the current selection, applied to every type it owns.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Duplicate</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Duplicate a family and its types under a new name without leaving the model.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item From Selection</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Turn the selected 2D geometry into a new detail item family, placed back in the view.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Purge Family Parameters</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">List unused family parameters and remove them, skipping anything bound to a schedule.</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Elements</div>
+          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Elements.panel</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Model-side edits on whatever you already have selected.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">2 tools</div>
+        </div>
+        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Rotate Multiple</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rotate every selected element around its own centre by one angle.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Category Filter</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Narrow a mixed selection down to a single category before running anything else.</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 0; border-bottom: none;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Sandbox</div>
+          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Sandbox.panel</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Newer tools still earning their place on the ribbon. Stable enough to use, not yet frozen.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">3 tools</div>
+        </div>
+        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Tag Detail Items</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Tag every untagged detail item in the view with the tag family you pick.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Resize Filled Region</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Resize a filled region numerically in mm instead of dragging its boundary.</div>
+          </div>
+          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Relayout Settings</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Spacing and alignment defaults shared by the layout tools.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4;">
+    <div data-r="faqouter" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 300px 1fr; gap: 48px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">FAQ</div>
+        <div style="font-size: 26px; font-weight: 600; color: #1E2120; line-height: 1.2;">When something misbehaves</div>
+        <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Most issues are a stale pyRevit cache. Reload first, then read on.</div>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">The tab doesn't appear in Revit</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">pyRevit → Settings → Custom Extensions Directories → add the folder that contains ArchiLoom.extension (not the extension folder itself), then Reload. If it still hides, check that pyRevit loaded at all — a failed CLR load takes every extension with it.</div>
+        </div>
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">A dialog opens with the wrong colours</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Old cached styles. Reload pyRevit; if one window is still off, its XAML predates UI Standard v2 and its header is written inline. That's cosmetic — the tool runs fine.</div>
+        </div>
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">"Cannot find resource named ..."</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">apply_theme(self) must be called before forms.WPFWindow.__init__(self, xaml). LoadComponent resolves every StaticResource immediately, so a theme merged afterwards arrives too late.</div>
+        </div>
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Numbers show up in feet</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Revit stores length in feet internally. Every ArchiLoom dialog displays and accepts mm and converts on the way in and out — if you see feet, you're reading a raw parameter, not a tool field.</div>
+        </div>
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Can I undo a batch run?</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Yes. Every model change is wrapped in a single transaction named after the tool, so one Ctrl+Z reverts the whole run — 24 renames included.</div>
+        </div>
+        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
+          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Which Revit versions are supported?</div>
+          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">2021 through 2026, on pyRevit's IronPython 2.7 engine. Nothing in the codebase depends on a version-specific API, but new releases are only smoke-tested on 2024 and 2026.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; justify-content: center; padding: 64px 24px;">
+    <div data-r="three" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52;">Contributing</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Issues and pull requests are welcome. New tools copy <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_window.xaml</span> and <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_script.py</span>, keep code and comments in English, and follow the shared style guide in <span style="font-family: Consolas, monospace; font-size: 12px;">lib/GUI/Resources/UI_GUIDELINE.md</span> — a dialog that invents its own colour won't be merged.</div>
+        <a href="https://github.com/huunhan2261/archiloom/issues" style="font-size: 13px; font-weight: 600; margin-top: 2px;">Open an issue →</a>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6360;">License</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">MIT. Use it on commercial projects, fork it, ship it inside your office standard. Keep the copyright notice; the logo and wordmark stay with ArchiLoom.</div>
+        <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E; margin-top: 2px;">© 2026 Nhan Nguyen Huu</div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B44530;">Author</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Built by <b style="color: #1E2120;">Nhan Nguyen Huu</b>, architect and BIM lead — every tool here started as a task that ate an afternoon. Feedback from real projects is the fastest way to shape the next one.</div>
+        <a href="mailto:huunhan2261@gmail.com" style="font-size: 13px; font-weight: 600; margin-top: 2px;">huunhan2261@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #1E2120; padding: 28px 24px; display: flex; justify-content: center;">
+    <div data-r="footrow" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
+      <img src="assets/logo.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
+      <div style="flex: 1; font-size: 12px; color: #78827E;">pyRevit extension · IronPython 2.7 · not affiliated with Autodesk</div>
+      <a href="https://github.com/huunhan2261/archiloom" class="footer-link" style="font-size: 12px;">GitHub</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

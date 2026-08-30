@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="project/uploads/Logo%20w%20Text.png" alt="ArchiLoom" height="40">
+<img src="docs/assets/logo.png" alt="ArchiLoom" height="40">
 
 **A Revit ribbon tab of small, sharp tools for detailing and family housekeeping.**
 
