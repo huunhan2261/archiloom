@@ -22,17 +22,90 @@
   .btn-primary { background: #EB664B; color: #FFFFFF; border: none; }
   .btn-primary:hover { background: #D8543B; }
 
-  .tool-card { border: 1px solid #E2E6E4; background: #FFFFFF; }
-  .tool-card:hover { border-color: #B9D5C5; background: #F7F9F8; }
+  .tool-card { position: relative; overflow: hidden; border: 1px solid #E2E6E4; background: #FFFFFF; transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease; }
+  .tool-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #EB664B; transform: scaleY(0); transform-origin: top; transition: transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
+  .tool-card:hover { border-color: #F5B8A9; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(235,102,75,0.1); }
+  .tool-card:hover::before { transform: scaleY(1); }
+  .tool-card:hover .tool-name { color: #B44530; }
+  .tool-arrow { opacity: 0; transform: translateX(-6px); transition: opacity 200ms ease, transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
+  .tool-card:hover .tool-arrow { opacity: 1; transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .tool-card, .tool-card::before, .tool-arrow { transition: none !important; }
+  }
 
-  .footer-link { color: #CBD1CE; border-bottom: 1px solid #5A6360; }
-  .footer-link:hover { color: #FFFFFF; border-bottom-color: #A3ACA8; }
+  .footer-link { color: #5A6360; border-bottom-color: #CBD1CE; }
+  .footer-link:hover { color: #1E2120; border-bottom-color: #78827E; }
+
+  .btn-download { background: #EB664B; color: #FFFFFF; box-shadow: 0 2px 0 #B44530; transition: background 180ms ease, transform 180ms ease; }
+  .btn-download:hover { background: #D8543B; color: #FFFFFF; }
+  .btn-download:active { transform: translateY(1px); }
+
+  #mock-stage { position: relative; height: 430px; perspective: 1500px; perspective-origin: 50% 44%; }
+  .mock-slide { position: absolute; top: 0; left: 0; width: 480px; border-radius: 12px; transition: transform 640ms cubic-bezier(0.22,1,0.36,1), opacity 420ms ease, filter 420ms ease; }
+  .mock-float { animation: mockFloat 4.6s ease-in-out infinite; }
+  #mock-stage > .mock-slide:nth-child(2) .mock-float { animation-delay: -1.15s; }
+  #mock-stage > .mock-slide:nth-child(3) .mock-float { animation-delay: -2.3s; }
+  #mock-stage > .mock-slide:nth-child(4) .mock-float { animation-delay: -3.45s; }
+  @keyframes mockFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(0.35deg); } }
+  .mock-pos-0 { transform: translate3d(0,0,0) rotateY(-3deg) rotateX(1deg); opacity: 1; filter: none; z-index: 4; box-shadow: 0 26px 60px rgba(30,33,32,0.22); }
+  .mock-pos-1 { transform: translate3d(90px,-70px,-380px) rotateY(-22deg) rotateX(7deg); opacity: 0.4; filter: blur(1.2px); z-index: 3; box-shadow: 0 16px 36px rgba(30,33,32,0.12); }
+  .mock-pos-2 { transform: translate3d(-100px,20px,-560px) rotateY(20deg) rotateX(-4deg); opacity: 0.28; filter: blur(2px); z-index: 2; box-shadow: 0 16px 36px rgba(30,33,32,0.1); }
+  .mock-pos-3 { transform: translate3d(70px,100px,-480px) rotateY(-16deg) rotateX(-6deg); opacity: 0.32; filter: blur(1.6px); z-index: 1; box-shadow: 0 16px 36px rgba(30,33,32,0.1); }
+  .mock-dot { width: 16px; height: 3px; border-radius: 2px; cursor: pointer; background: #CBD1CE; border: none; padding: 0; transition: background 220ms ease, width 320ms cubic-bezier(0.22,0.61,0.36,1); }
+  .mock-dot.is-active { width: 34px; background: #EB664B; }
+  @media (prefers-reduced-motion: reduce) {
+    .mock-slide { transition: none !important; }
+    .mock-float { animation: none !important; }
+  }
+
+  [data-parallax] { will-change: transform; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-parallax] { display: none !important; }
+  }
+  @media (max-width: 720px) {
+    [data-parallax] { display: none !important; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 480ms cubic-bezier(0.33,1,0.68,1), transform 560ms cubic-bezier(0.33,1,0.68,1); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 90ms; }
+  .reveal-delay-2 { transition-delay: 180ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(1) { transition-delay: 0ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(2) { transition-delay: 50ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(3) { transition-delay: 100ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(4) { transition-delay: 150ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(5) { transition-delay: 200ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(6) { transition-delay: 250ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(7) { transition-delay: 300ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(8) { transition-delay: 350ms; }
+  [data-r="toolgrid"] > .tool-card:nth-child(9) { transition-delay: 400ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* Tool cards with a demo available (wired to a TOOLS entry by name) */
+  .tool-card-demo { cursor: pointer; }
+
+  /* Tool demo modal */
+  .tool-modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px; }
+  .tool-modal.is-open { display: flex; }
+  .tool-modal-backdrop { position: absolute; inset: 0; background: rgba(30,33,32,0.55); }
+  .tool-modal-panel { position: relative; width: 100%; max-width: 720px; max-height: 90vh; overflow-y: auto; background: #FFFFFF; border-radius: 8px; box-shadow: 0 24px 60px rgba(30,33,32,0.3); }
+  .tool-modal-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 4px; border: 1px solid #E2E6E4; background: #FFFFFF; color: #3F4643; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+  .tool-modal-close:hover { background: #EFF2F0; color: #1E2120; }
+  .tool-modal-video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #1E2120; border-radius: 8px 8px 0 0; overflow: hidden; }
+  .tool-modal-video video, .tool-modal-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .tool-modal-body { padding: 20px 24px 24px; }
+  .tool-modal-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B44530; margin-top: 18px; }
+  .tool-modal-steps { margin: 10px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .tool-modal-steps li { font-size: 13px; line-height: 1.6; color: #3F4643; }
+
+  a:focus-visible, button:focus-visible, .tool-card-demo:focus-visible { outline: 2px solid #EB664B; outline-offset: 2px; }
 
   @media (max-width: 1024px) {
-    [data-r="hero"], [data-r="faqouter"], [data-r="panelrow"], [data-r="faqrow"] { grid-template-columns: 1fr !important; }
-    [data-r="faqrow"] { gap: 8px !important; }
+    [data-r="hero"], [data-r="panelrow"] { grid-template-columns: 1fr !important; }
     [data-r="hero"] { gap: 40px !important; }
-    [data-r="mock"] { width: 100% !important; max-width: 420px !important; }
+    #mock-stage, .mock-slide { width: 100% !important; max-width: 480px !important; }
     [data-r="three"] { grid-template-columns: 1fr 1fr !important; }
   }
   @media (max-width: 720px) {
@@ -49,23 +122,25 @@
 
   <div style="position: sticky; top: 0; z-index: 20;">
     <div style="height: 4px; background: #5EA079;"></div>
-    <div style="background: #FFFFFF; height: 56px; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
+    <div style="background: #FFFFFF; height: 60px; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
       <div style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 28px;">
         <img src="assets/logo.png" alt="ArchiLoom" style="height: 24px; width: auto; display: block;">
         <div style="flex: 1;"></div>
         <div data-r="navlinks" style="display: flex; align-items: center; gap: 28px;">
           <a href="#tools" class="nav-link">Tools</a>
-          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#about" class="nav-link">About</a>
         </div>
-        <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 30px; padding: 0 16px; border-radius: 4px; font-size: 13px; font-weight: 600; display: flex; align-items: center;">GitHub</a>
+        <a href="https://github.com/huunhan2261/archiloom" class="nav-link" style="font-weight: 600;">GitHub</a>
+        <a href="https://github.com/huunhan2261/archiloom/releases/latest" class="btn-download" style="height: 34px; padding: 0 18px; border-radius: 4px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; white-space: nowrap;">Download<span style="font-family: Consolas, monospace; font-size: 11px; font-weight: 400; opacity: 0.85;">latest</span></a>
       </div>
     </div>
     <div style="height: 2px; background: #EB664B;"></div>
   </div>
 
-  <section style="display: flex; justify-content: center; padding: 72px 24px 64px;">
-    <div style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: center;" data-r="hero">
-      <div style="display: flex; flex-direction: column; gap: 22px;">
+  <section style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 72px 24px 64px;">
+    <div data-parallax data-speed="0.16" data-dx="-420" data-rot="-8" style="position: absolute; left: -190px; bottom: -170px; width: 380px; pointer-events: none; user-select: none; z-index: 0;"><img src="assets/mark-v.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.42;"></div>
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 480px; gap: 56px; align-items: center;" data-r="hero">
+      <div class="reveal" style="display: flex; flex-direction: column; gap: 22px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">pyRevit extension · Revit 2021–2026</div>
         <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em;">Detailing and family housekeeping, without the click marathon.</h1>
         <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.</p>
@@ -89,59 +164,197 @@
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 420px;">
-        <div data-r="mock" style="width: 420px; background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 2px; box-shadow: 0 18px 44px rgba(30,33,32,0.16);">
-          <div style="height: 52px; background: #5EA079; display: flex; align-items: center; padding: 0 8px 0 16px;">
-            <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF;">Select 2D Elements</div>
-            <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+      <div class="reveal reveal-delay-1" style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 480px;">
+        <div id="mock-stage">
+
+          <div class="mock-slide mock-pos-0" data-mock-slide>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
+            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Select 2D Elements</div>
+              <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+            </div>
+            <div style="height: 2px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Pick a category — the window closes immediately and you drag-select in the view. No Finish button.</div>
+            <div style="min-height: 184px;">
+              <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <div style="border: 1px solid #5EA079; background: #EEF5F1; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; border-radius: 4px; background: #5EA079; color: #FFFFFF; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">1</div>
+                    <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Tags</div>
+                  </div>
+                  <div style="font-size: 12px; font-family: Consolas, monospace; color: #3D6E52;">128 in view</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">2</div>
+                    <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Detail Items</div>
+                  </div>
+                  <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">64 in view</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">3</div>
+                    <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Filled Region</div>
+                  </div>
+                  <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">12 in view</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; background: #F7F9F8; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #A3ACA8; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">4</div>
+                    <div style="flex: 1; font-size: 13px; font-weight: 600; color: #A3ACA8;">Lines</div>
+                  </div>
+                  <div style="font-size: 12px; font-family: Consolas, monospace; color: #A3ACA8;">none in view</div>
+                </div>
+              </div>
+            </div>
+            <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+            <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
+              <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">1–4 or click · Esc to cancel</div>
+            </div>
+            </div></div>
           </div>
-          <div style="height: 2px; background: #EB664B;"></div>
-          <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E;">Pick a category — the window closes immediately and you drag-select in the view. No Finish button.</div>
-          <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div style="border: 1px solid #5EA079; background: #EEF5F1; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #5EA079; color: #FFFFFF; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">1</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Tags</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #3D6E52;">128 in view</div>
+
+          <div class="mock-slide mock-pos-1" data-mock-slide>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
+            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Batch Family Rename</div>
+              <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
             </div>
-            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">2</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Detail Items</div>
+            <div style="height: 2px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Replace &quot;DT_&quot; with &quot;Detail_&quot; across 24 families. Preview every rename before anything is written.</div>
+            <div style="min-height: 184px;">
+              <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">DT_Wall Base</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">Detail_Wall Base</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">rename</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">DT_Ceiling Trim</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">Detail_Ceiling Trim</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">rename</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">DT_Coping A</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">Detail_Coping A</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">rename</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">DT_Coping A_old</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #B44530; white-space: nowrap;">name taken</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #B44530; background: #FDEDE9; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">skip</div>
+                </div>
               </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">64 in view</div>
             </div>
-            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">3</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Filled Region</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">12 in view</div>
+            <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+            <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
+              <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">24 families · 1 transaction</div>
             </div>
-            <div style="border: 1px solid #E2E6E4; background: #F7F9F8; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #A3ACA8; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">4</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #A3ACA8;">Lines</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #A3ACA8;">none in view</div>
-            </div>
+            </div></div>
           </div>
-          <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
-          <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
-            <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
-            <div style="flex: 1;"></div>
-            <div style="font-size: 12px; color: #78827E;"><span style="font-family: Consolas, monospace;">1–4</span> or click · <span style="font-family: Consolas, monospace;">Esc</span> to cancel</div>
+
+          <div class="mock-slide mock-pos-2" data-mock-slide>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
+            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Detail Type Excel Sync</div>
+              <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+            </div>
+            <div style="height: 2px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Imported 3 changes from ArchiLoom_DetailTypes.xlsx. Review the diff, then write to the model.</div>
+            <div style="min-height: 184px;">
+              <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Coping — Type Mark</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #B44530; white-space: nowrap;">CP-01 → CP-11</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #B44530; background: #FDEDE9; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">changed</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Flashing — Description</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #B44530; white-space: nowrap;">Alu 1.2mm</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #B44530; background: #FDEDE9; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">changed</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Sealant — Type Mark</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #3D6E52; white-space: nowrap;">SL-04</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">new</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Reveal — Description</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">unchanged</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">skip</div>
+                </div>
+              </div>
+            </div>
+            <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+            <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
+              <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">3 of 41 rows differ</div>
+            </div>
+            </div></div>
           </div>
+
+          <div class="mock-slide mock-pos-3" data-mock-slide>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
+            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Apply Sheet Layout</div>
+              <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+            </div>
+            <div style="height: 2px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Drop the saved viewport arrangement of A-201 onto the rest of the set, one sheet at a time or all at once.</div>
+            <div style="min-height: 184px;">
+              <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-202 — Wall Sections</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #3D6E52; white-space: nowrap;">4 viewports</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">applied</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-203 — Wall Sections</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #3D6E52; white-space: nowrap;">4 viewports</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">applied</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-204 — Details</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">3 viewports</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">queued</div>
+                </div>
+                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-205 — Details</div>
+                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #B44530; white-space: nowrap;">layout differs</div>
+                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #B44530; background: #FDEDE9; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">review</div>
+                </div>
+              </div>
+            </div>
+            <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+            <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
+              <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">Source: A-201 · Ctrl+Z reverts all</div>
+            </div>
+            </div></div>
+          </div>
+
         </div>
-        <div style="font-size: 12px; color: #78827E;">Actual dialog — one green band, one coral action, nothing else competing.</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div data-mock-caption style="flex: 1; font-size: 12px; color: #78827E;">Select 2D Elements — one green band, one coral action, nothing else competing.</div>
+          <button type="button" class="mock-dot is-active" data-mock-dot aria-label="Show dialog 1"></button>
+          <button type="button" class="mock-dot" data-mock-dot aria-label="Show dialog 2"></button>
+          <button type="button" class="mock-dot" data-mock-dot aria-label="Show dialog 3"></button>
+          <button type="button" class="mock-dot" data-mock-dot aria-label="Show dialog 4"></button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="tools" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4; border-bottom: 1px solid #E2E6E4;">
-    <div style="width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 36px;">
-      <div style="display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid #E2E6E4; padding-bottom: 18px;">
+  <section id="tools" style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4; border-bottom: 1px solid #E2E6E4;">
+    <div data-parallax data-speed="-0.22" data-dx="440" data-rot="10" style="position: absolute; right: -180px; top: 60px; width: 520px; pointer-events: none; user-select: none; z-index: 0;"><img src="assets/mark-v.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.32;"></div>
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 36px;">
+      <div class="reveal" style="display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid #E2E6E4; padding-bottom: 18px;">
         <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;">
           <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">What's inside</div>
           <div style="font-size: 26px; font-weight: 600; color: #1E2120;">The tab, panel by panel</div>
@@ -149,125 +362,249 @@
         <div style="font-size: 13px; line-height: 1.65; color: #78827E; width: 340px;">Order on the ribbon follows each panel's <span style="font-family: Consolas, monospace; font-size: 12px;">bundle.yaml</span>. Every button ships a tooltip with a short How-to.</div>
       </div>
 
-      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Detailing</div>
           <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Detailing.panel</div>
           <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Detail items, line styles and sheet layouts — the repetitive half of documentation.</div>
           <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">9 tools</div>
+          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Type Excel Sync</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Type List</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Item Layout</div>
+              </div>
+            </div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Detailing</div>
+          </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type Excel Sync</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type Excel Sync</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Export detail types to Excel, edit Type Mark and Description, import back through a diff review before anything is written.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type List</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type List</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">One searchable list of every detail type in the model, with sheet references and placed counts.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Layout</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Layout</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Place and align detail items on a grid instead of nudging them one by one.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Views</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Views</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Jump to every view where a detail item is placed, straight from the list.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Sync Detail Item Params</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Sync Detail Item Params</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Push shared parameter values across matching detail items in one transaction.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Select 2D Elements</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Select 2D Elements</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Pick a 2D category, the window closes and you drag-select only that category in the view.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Save Sheet Layout</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Save Sheet Layout</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Store the viewport arrangement of a sheet as a reusable layout.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Apply Sheet Layout</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Apply Sheet Layout</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Drop a saved layout onto other sheets so a set stays consistent.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Manage Line Styles</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Manage Line Styles</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Review, rename and purge line styles; Quick Line Style assigns one to a selection in a keystroke.</div>
           </div>
         </div>
       </div>
 
-      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Family</div>
           <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Family.panel</div>
           <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Naming and cleanup for families and types — bulk edits with a preview you can trust.</div>
           <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">6 tools</div>
+          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Batch Family Rename</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Batch Family Type Rename</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Family Rename</div>
+              </div>
+            </div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Family</div>
+          </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Rename</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Rename</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Find, replace, prefix and suffix across families, with a before/after preview and duplicate handling.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Type Rename</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Type Rename</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">The same rule engine applied one level down, at type level.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Rename</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Rename</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rename the family of the current selection, applied to every type it owns.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Duplicate</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Duplicate</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Duplicate a family and its types under a new name without leaving the model.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item From Selection</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item From Selection</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Turn the selected 2D geometry into a new detail item family, placed back in the view.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Purge Family Parameters</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Purge Family Parameters</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">List unused family parameters and remove them, skipping anything bound to a schedule.</div>
           </div>
         </div>
       </div>
 
-      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Elements</div>
           <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Elements.panel</div>
           <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Model-side edits on whatever you already have selected.</div>
           <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">2 tools</div>
+          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Rotate Multiple</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Category Filter</div>
+              </div>
+            </div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Elements</div>
+          </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Rotate Multiple</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Rotate Multiple</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rotate every selected element around its own centre by one angle.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Category Filter</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Category Filter</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Narrow a mixed selection down to a single category before running anything else.</div>
           </div>
         </div>
       </div>
 
-      <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 0; border-bottom: none;">
+      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 0; border-bottom: none;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Sandbox</div>
           <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Sandbox.panel</div>
           <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Newer tools still earning their place on the ribbon. Stable enough to use, not yet frozen.</div>
           <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">3 tools</div>
+          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Tag Detail Items</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Resize Filled Region</div>
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
+                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Relayout Settings</div>
+              </div>
+            </div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Sandbox</div>
+          </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Tag Detail Items</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Tag Detail Items</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Tag every untagged detail item in the view with the tag family you pick.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Resize Filled Region</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Resize Filled Region</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Resize a filled region numerically in mm instead of dragging its boundary.</div>
           </div>
-          <div class="tool-card" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="font-size: 13px; font-weight: 600; color: #1E2120;">Relayout Settings</div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Relayout Settings</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
             <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Spacing and alignment defaults shared by the layout tools.</div>
           </div>
         </div>
@@ -275,55 +612,20 @@
     </div>
   </section>
 
-  <section id="faq" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4;">
-    <div data-r="faqouter" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 300px 1fr; gap: 48px;">
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">FAQ</div>
-        <div style="font-size: 26px; font-weight: 600; color: #1E2120; line-height: 1.2;">When something misbehaves</div>
-        <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Most issues are a stale pyRevit cache. Reload first, then read on.</div>
-      </div>
-      <div style="display: flex; flex-direction: column;">
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">The tab doesn't appear in Revit</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">pyRevit → Settings → Custom Extensions Directories → add the folder that contains ArchiLoom.extension (not the extension folder itself), then Reload. If it still hides, check that pyRevit loaded at all — a failed CLR load takes every extension with it.</div>
-        </div>
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">A dialog opens with the wrong colours</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Old cached styles. Reload pyRevit; if one window is still off, its XAML predates UI Standard v2 and its header is written inline. That's cosmetic — the tool runs fine.</div>
-        </div>
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">"Cannot find resource named ..."</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">apply_theme(self) must be called before forms.WPFWindow.__init__(self, xaml). LoadComponent resolves every StaticResource immediately, so a theme merged afterwards arrives too late.</div>
-        </div>
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Numbers show up in feet</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Revit stores length in feet internally. Every ArchiLoom dialog displays and accepts mm and converts on the way in and out — if you see feet, you're reading a raw parameter, not a tool field.</div>
-        </div>
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Can I undo a batch run?</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">Yes. Every model change is wrapped in a single transaction named after the tool, so one Ctrl+Z reverts the whole run — 24 renames included.</div>
-        </div>
-        <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-          <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">Which Revit versions are supported?</div>
-          <div style="font-size: 13px; line-height: 1.75; color: #5A6360;">2021 through 2026, on pyRevit's IronPython 2.7 engine. Nothing in the codebase depends on a version-specific API, but new releases are only smoke-tested on 2024 and 2026.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section style="display: flex; justify-content: center; padding: 64px 24px;">
-    <div data-r="three" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+  <section id="about" style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 64px 24px;">
+    <div data-parallax data-speed="0.2" data-dx="-400" data-rot="9" style="position: absolute; left: -140px; bottom: -120px; width: 620px; pointer-events: none; user-select: none; z-index: 0;"><img src="assets/mark-h.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.52;"></div>
+    <div data-r="three" style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div class="reveal" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52;">Contributing</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Issues and pull requests are welcome. New tools copy <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_window.xaml</span> and <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_script.py</span>, keep code and comments in English, and follow the shared style guide in <span style="font-family: Consolas, monospace; font-size: 12px;">lib/GUI/Resources/UI_GUIDELINE.md</span> — a dialog that invents its own colour won't be merged.</div>
         <a href="https://github.com/huunhan2261/archiloom/issues" style="font-size: 13px; font-weight: 600; margin-top: 2px;">Open an issue →</a>
       </div>
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div class="reveal reveal-delay-1" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6360;">License</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">MIT. Use it on commercial projects, fork it, ship it inside your office standard. Keep the copyright notice; the logo and wordmark stay with ArchiLoom.</div>
         <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E; margin-top: 2px;">© 2026 Nhan Nguyen Huu</div>
       </div>
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div class="reveal reveal-delay-2" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B44530;">Author</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Built by <b style="color: #1E2120;">Nhan Nguyen Huu</b>, architect and BIM lead — every tool here started as a task that ate an afternoon. Feedback from real projects is the fastest way to shape the next one.</div>
         <a href="mailto:huunhan2261@gmail.com" style="font-size: 13px; font-weight: 600; margin-top: 2px;">huunhan2261@gmail.com</a>
@@ -331,13 +633,449 @@
     </div>
   </section>
 
-  <footer style="background: #1E2120; padding: 28px 24px; display: flex; justify-content: center;">
-    <div data-r="footrow" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
+  <footer style="padding: 24px; display: flex; justify-content: center; border-top: 1px solid #E2E6E4;">
+    <div data-r="footrow" class="reveal" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
       <img src="assets/logo.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
       <div style="flex: 1; font-size: 12px; color: #78827E;">pyRevit extension · IronPython 2.7 · not affiliated with Autodesk</div>
       <a href="https://github.com/huunhan2261/archiloom" class="footer-link" style="font-size: 12px;">GitHub</a>
     </div>
   </footer>
 </div>
+
+<div id="tool-modal" class="tool-modal">
+  <div class="tool-modal-backdrop" data-tool-modal-close></div>
+  <div class="tool-modal-panel" role="dialog" aria-modal="true" aria-labelledby="tool-modal-title">
+    <button type="button" class="tool-modal-close" data-tool-modal-close aria-label="Close">✕</button>
+    <div id="tool-modal-video" class="tool-modal-video"></div>
+    <div class="tool-modal-body">
+      <div id="tool-modal-title" style="font-size: 18px; font-weight: 600; color: #1E2120;"></div>
+      <div id="tool-modal-desc" style="font-size: 13px; line-height: 1.6; color: #5A6360; margin-top: 6px;"></div>
+      <div class="tool-modal-eyebrow">How to use</div>
+      <ol id="tool-modal-steps" class="tool-modal-steps"></ol>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll("[data-mock-slide]"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll("[data-mock-dot]"));
+  var stage = document.getElementById("mock-stage");
+  var captionEl = document.querySelector("[data-mock-caption]");
+  if (!slides.length || !stage) return;
+
+  var captions = [
+    "Select 2D Elements — one green band, one coral action, nothing else competing.",
+    "Batch Family Rename — before/after preview, duplicates flagged before commit.",
+    "Detail Type Excel Sync — a diff review stands between Excel and your model.",
+    "Apply Sheet Layout — one saved arrangement, a whole sheet set consistent."
+  ];
+
+  var n = slides.length;
+  var current = 0;
+  var paused = false;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function render() {
+    slides.forEach(function (el, i) {
+      var r = (i - current + n) % n;
+      el.className = "mock-slide mock-pos-" + r;
+    });
+    dots.forEach(function (d, i) {
+      d.classList.toggle("is-active", i === current);
+    });
+    if (captionEl) captionEl.textContent = captions[current] || "";
+  }
+
+  function go(i) {
+    current = ((i % n) + n) % n;
+    render();
+  }
+
+  dots.forEach(function (d, i) {
+    d.addEventListener("click", function () { go(i); });
+  });
+
+  render();
+
+  if (!reduce) {
+    var timer = setInterval(function () {
+      if (!paused && !document.hidden) go(current + 1);
+    }, 3000);
+    stage.addEventListener("mouseenter", function () { paused = true; });
+    stage.addEventListener("mouseleave", function () { paused = false; });
+  }
+})();
+
+(function () {
+  var marks = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  if (!marks.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var raf = 0;
+
+  function apply() {
+    raf = 0;
+    var vh = window.innerHeight || 800;
+    marks.forEach(function (el) {
+      var section = el.parentElement;
+      var r = section.getBoundingClientRect();
+      var mid = r.top + r.height / 2;
+      var speed = parseFloat(el.dataset.speed) || 0.15;
+      var dx = parseFloat(el.dataset.dx) || 0;
+      var rot = parseFloat(el.dataset.rot) || 0;
+      var t = Math.max(-1, Math.min(1, (mid - vh / 2) / vh));
+      var y = t * vh * speed * 2.1;
+      var x = t * dx;
+      var scale = 1 + (1 - Math.abs(t)) * 0.75;
+      var deg = t * rot;
+      el.style.transform = "translate3d(" + x.toFixed(1) + "px, " + y.toFixed(1) + "px, 0) rotate(" + deg.toFixed(2) + "deg) scale(" + scale.toFixed(3) + ")";
+    });
+  }
+
+  function onScroll() {
+    if (raf) return;
+    raf = requestAnimationFrame(apply);
+  }
+
+  apply();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+})();
+
+// Panel Tools showcase: demo videos + how-to steps.
+// To add a tool, append one object to TOOLS — the grid and modal render from this array only.
+var TOOLS = [
+  {
+    name: "Batch Family Rename",
+    desc: "Find, replace, prefix and suffix across families, with a before/after preview.",
+    video: "videos/batch-family-rename.mp4",
+    type: "file",
+    steps: [
+      "Select the families to rename in the Project Browser, or leave the selection empty to include every loaded family.",
+      "Open the Family panel and click Batch Family Rename.",
+      "Enter a find/replace rule, or a prefix/suffix.",
+      "Review the before/after preview — duplicate names are flagged in red.",
+      "Click Apply to commit every rename in a single transaction."
+    ]
+  },
+  {
+    name: "Detail Type Excel Sync",
+    desc: "Export detail types to Excel, edit them, and import the changes back through a diff review.",
+    video: "videos/detail-type-excel-sync.mp4",
+    type: "file",
+    steps: [
+      "Open the Detailing panel and click Detail Type Excel Sync.",
+      "Click Export to write every detail type to ArchiLoom_DetailTypes.xlsx.",
+      "Edit Type Mark and Description in Excel, then save the file.",
+      "Click Import and review the diff — only changed rows are listed.",
+      "Click Write to Model to apply the changes in a single transaction."
+    ]
+  },
+  {
+    name: "Detail Type List",
+    desc: "One searchable list of every detail type in the model, with sheet references and placed counts.",
+    video: "videos/detail-type-list.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Detail Item Layout",
+    desc: "Place and align detail items on a grid instead of nudging them one by one.",
+    video: "videos/detail-item-layout.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Detail Item Views",
+    desc: "Jump to every view where a detail item is placed, straight from the list.",
+    video: "videos/detail-item-views.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Sync Detail Item Params",
+    desc: "Push shared parameter values across matching detail items in one transaction.",
+    video: "videos/sync-detail-item-params.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Select 2D Elements",
+    desc: "Pick a 2D category, the window closes and you drag-select only that category in the view.",
+    video: "videos/select-2d-elements.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Save Sheet Layout",
+    desc: "Store the viewport arrangement of a sheet as a reusable layout.",
+    video: "videos/save-sheet-layout.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Apply Sheet Layout",
+    desc: "Drop a saved layout onto other sheets so a set stays consistent.",
+    video: "videos/apply-sheet-layout.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Manage Line Styles",
+    desc: "Review, rename and purge line styles; Quick Line Style assigns one to a selection in a keystroke.",
+    video: "videos/manage-line-styles.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Batch Family Type Rename",
+    desc: "The same rule engine applied one level down, at type level.",
+    video: "videos/batch-family-type-rename.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Family Rename",
+    desc: "Rename the family of the current selection, applied to every type it owns.",
+    video: "videos/family-rename.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Family Duplicate",
+    desc: "Duplicate a family and its types under a new name without leaving the model.",
+    video: "videos/family-duplicate.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Detail Item From Selection",
+    desc: "Turn the selected 2D geometry into a new detail item family, placed back in the view.",
+    video: "videos/detail-item-from-selection.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Purge Family Parameters",
+    desc: "List unused family parameters and remove them, skipping anything bound to a schedule.",
+    video: "videos/purge-family-parameters.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Rotate Multiple",
+    desc: "Rotate every selected element around its own centre by one angle.",
+    video: "videos/rotate-multiple.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Category Filter",
+    desc: "Narrow a mixed selection down to a single category before running anything else.",
+    video: "videos/category-filter.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Tag Detail Items",
+    desc: "Tag every untagged detail item in the view with the tag family you pick.",
+    video: "videos/tag-detail-items.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Resize Filled Region",
+    desc: "Resize a filled region numerically in mm instead of dragging its boundary.",
+    video: "videos/resize-filled-region.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  },
+  {
+    name: "Relayout Settings",
+    desc: "Spacing and alignment defaults shared by the layout tools.",
+    video: "videos/relayout-settings.mp4",
+    type: "file",
+    steps: [
+      "TODO: add step 1.",
+      "TODO: add step 2.",
+      "TODO: add step 3."
+    ]
+  }
+];
+
+(function () {
+  var modal = document.getElementById("tool-modal");
+  if (!modal) return;
+
+  var videoHost = document.getElementById("tool-modal-video");
+  var titleEl = document.getElementById("tool-modal-title");
+  var descEl = document.getElementById("tool-modal-desc");
+  var stepsEl = document.getElementById("tool-modal-steps");
+  var lastFocused = null;
+
+  function buildVideoEl(tool) {
+    if (tool.type === "youtube") {
+      var iframe = document.createElement("iframe");
+      iframe.src = tool.video;
+      iframe.title = tool.name + " demo video";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      return iframe;
+    }
+    var video = document.createElement("video");
+    video.src = tool.video;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    return video;
+  }
+
+  function openModal(tool, triggerEl) {
+    lastFocused = triggerEl || document.activeElement;
+    titleEl.textContent = tool.name;
+    descEl.textContent = tool.desc;
+
+    stepsEl.innerHTML = "";
+    tool.steps.forEach(function (step) {
+      var li = document.createElement("li");
+      li.textContent = step;
+      stepsEl.appendChild(li);
+    });
+
+    videoHost.innerHTML = "";
+    videoHost.appendChild(buildVideoEl(tool));
+
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeydown);
+    modal.querySelector(".tool-modal-close").focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    videoHost.innerHTML = ""; // clear the video/iframe so playback stops
+    document.removeEventListener("keydown", onKeydown);
+    if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") closeModal();
+  }
+
+  Array.prototype.slice.call(modal.querySelectorAll("[data-tool-modal-close]")).forEach(function (el) {
+    el.addEventListener("click", closeModal);
+  });
+
+  // Wire up existing tool cards in the "panel by panel" grid: a card becomes
+  // clickable when its name matches a TOOLS entry — nothing else to edit.
+  Array.prototype.slice.call(document.querySelectorAll(".tool-card")).forEach(function (card) {
+    var nameEl = card.querySelector(".tool-name");
+    if (!nameEl) return;
+
+    var cardName = nameEl.textContent.trim();
+    var tool = TOOLS.filter(function (t) { return t.name === cardName; })[0];
+    if (!tool) return;
+
+    card.classList.add("tool-card-demo");
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.addEventListener("click", function () { openModal(tool, card); });
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal(tool, card);
+      }
+    });
+  });
+})();
+
+(function () {
+  var els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (!els.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      entry.target.classList.toggle("is-visible", entry.isIntersecting);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,5 @@
+Open the Detailing panel and click Detail Type Excel Sync.
+Click Export to write every detail type to ArchiLoom_DetailTypes.xlsx.
+Edit Type Mark and Description in Excel, then save the file.
+Click Import and review the diff — only changed rows are listed.
+Click Write to Model to apply the changes in a single transaction.

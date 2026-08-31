@@ -14,11 +14,46 @@
   a:hover { color: #EB664B; border-bottom-color: #EB664B; }
   html { scroll-behavior: smooth; }
   a, [data-r="toolgrid"] > div { cursor: url('cursor-poly.png') 2 2, pointer; }
+  @keyframes dcIn { from { opacity: 0; transform: perspective(900px) translate3d(-40px, 18px, -220px) rotateY(24deg) rotateX(-14deg); } to { opacity: 1; transform: perspective(900px) translate3d(0,0,0) rotateY(0deg) rotateX(0deg); } }
+  @keyframes dcIn2 { from { opacity: 0; transform: perspective(900px) translate3d(40px, 18px, -220px) rotateY(-24deg) rotateX(-14deg); } to { opacity: 1; transform: perspective(900px) translate3d(0,0,0) rotateY(0deg) rotateX(0deg); } }
+  @keyframes dcTitleIn { from { opacity: 0; transform: perspective(700px) translate3d(-26px, 0, -120px) rotateY(35deg); } to { opacity: 1; transform: none; } }
+  @keyframes dcTitleIn2 { from { opacity: 0; transform: perspective(700px) translate3d(26px, 0, -120px) rotateY(-35deg); } to { opacity: 1; transform: none; } }
+  @keyframes dcOrbit { 0% { transform: rotateY(-9deg) rotateX(5deg) translateZ(0); } 50% { transform: rotateY(9deg) rotateX(-3deg) translateZ(18px); } 100% { transform: rotateY(-9deg) rotateX(5deg) translateZ(0); } }
+  @keyframes dcSheen { 0% { background-position: 180% 0; } 55%, 100% { background-position: -80% 0; } }
+  @keyframes dcSweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes dcSweep2 { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes dcFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @media print {
+    [data-px] { display: none !important; }
+    [data-anim] { opacity: 1 !important; transform: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-r="mock"], [data-r="mock"] * { animation: none !important; }
+    [data-px] { display: none !important; }
+    [data-anim] { opacity: 1 !important; transform: none !important; }
+  }
+  [data-r="toolcard"] { position: relative; overflow: hidden; transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease; }
+  [data-r="toolcard"]::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #EB664B; transform: scaleY(0); transform-origin: top; transition: transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
+  [data-r="toolcard"]:hover { border-color: #F5B8A9; background: #FFF8F6; transform: translateY(-3px); box-shadow: 0 10px 22px rgba(235,102,75,0.16); }
+  [data-r="toolcard"]:hover::before { transform: scaleY(1); }
+  [data-r="toolcard"]:hover [data-r="toolname"] { color: #B44530; }
+  [data-r="toolarrow"] { opacity: 0; transform: translateX(-6px); transition: opacity 200ms ease, transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
+  [data-r="toolcard"]:hover [data-r="toolarrow"] { opacity: 1; transform: translateX(0); }
+  [data-r="panelrow"]:hover [data-r="panelname"] { color: #B44530; }
+  [data-r="panelname"] { transition: color 200ms ease; }
+  [data-r="slot"] { transition: transform 260ms cubic-bezier(0.22,0.61,0.36,1), border-color 200ms ease, box-shadow 220ms ease; }
+  [data-r="glyph"] { transition: transform 320ms cubic-bezier(0.22,0.61,0.36,1); }
+  [data-r="panelrow"]:hover [data-r="slot"] { border-color: #F5B8A9; box-shadow: 0 4px 12px rgba(235,102,75,0.14); }
+  [data-r="panelrow"]:hover [data-r="slot"]:nth-child(1) [data-r="glyph"] { transform: translateY(-2px) rotate(-6deg); }
+  [data-r="panelrow"]:hover [data-r="slot"]:nth-child(2) [data-r="glyph"] { transform: translateY(-2px) rotate(4deg); }
+  [data-r="panelrow"]:hover [data-r="slot"]:nth-child(3) [data-r="glyph"] { transform: translateY(-2px) rotate(-3deg); }
+  @media (prefers-reduced-motion: reduce) {
+    [data-r="toolcard"], [data-r="toolcard"]::before, [data-r="toolarrow"] { transition: none !important; }
+  }
   @media (max-width: 1024px) {
-    [data-r="hero"], [data-r="two"], [data-r="cta"], [data-r="faqouter"], [data-r="panelrow"], [data-r="faqrow"] { grid-template-columns: 1fr !important; }
-    [data-r="faqrow"] { gap: 8px !important; }
+    [data-r="hero"], [data-r="two"], [data-r="cta"], [data-r="panelrow"] { grid-template-columns: 1fr !important; }
     [data-r="hero"] { gap: 40px !important; }
-    [data-r="mock"] { width: 100% !important; max-width: 420px !important; }
+    [data-r="mock"] { width: 100% !important; max-width: 480px !important; }
     [data-r="three"] { grid-template-columns: 1fr 1fr !important; }
   }
   @media (max-width: 720px) {
@@ -32,25 +67,28 @@
 
 <div style="font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, sans-serif; color: #2E3230; background: #EFF2F0; min-height: 100%;">
 
-  <div style="position: sticky; top: 0; z-index: 20;">
+  <div data-r="header" style="position: sticky; top: 0; z-index: 20; transition: box-shadow 260ms ease;">
     <div style="height: 4px; background: #5EA079;"></div>
-    <div style="background: #FFFFFF; height: 56px; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
+    <div style="background: #FFFFFF; height: 60px; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
       <div style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 28px;">
         <img src="uploads/Logo w Text.png" alt="ArchiLoom" style="height: 24px; width: auto; display: block;">
         <div style="flex: 1;"></div>
         <div data-r="navlinks" style="display: flex; align-items: center; gap: 28px;">
           <a href="#tools" style="font-size: 13px; color: #3F4643; border-bottom: none;" style-hover="color: #1E2120;">Tools</a>
-          <a href="#faq" style="font-size: 13px; color: #3F4643; border-bottom: none;" style-hover="color: #1E2120;">FAQ</a>
+          <a href="#about" style="font-size: 13px; color: #3F4643; border-bottom: none;" style-hover="color: #1E2120;">About</a>
         </div>
-        <a href="{{ repoUrl }}" style="height: 30px; padding: 0 16px; border-radius: 4px; background: #FFFFFF; border: 1px solid #CBD1CE; color: #3F4643; font-size: 13px; font-weight: 600; display: flex; align-items: center; border-bottom: 1px solid #CBD1CE; box-sizing: border-box;" style-hover="background: #EFF2F0; border-color: #A3ACA8; color: #1E2120;">GitHub</a>
+        <a href="{{ repoUrl }}" style="font-size: 13px; font-weight: 600; color: #3F4643; border-bottom: none;" style-hover="color: #1E2120;">GitHub</a>
+        <a href="{{ releasesUrl }}" style="height: 34px; padding: 0 18px; border-radius: 4px; background: #EB664B; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; white-space: nowrap; border-bottom: none; box-shadow: 0 2px 0 #B44530; transition: background 180ms ease, transform 180ms ease;" style-active="transform: translateY(1px);" style-hover="background: #D8543B; color: #FFFFFF;">Download<span style="font-family: Consolas, monospace; font-size: 11px; font-weight: 400; opacity: 0.85;">latest</span></a>
       </div>
     </div>
     <div style="height: 2px; background: #EB664B;"></div>
   </div>
 
-  <section style="display: flex; justify-content: center; padding: 72px 24px 64px;">
-    <div style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: center;" data-r="hero">
-      <div style="display: flex; flex-direction: column; gap: 22px;">
+  <section style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 72px 24px 64px;">
+      <div data-px data-speed="0.16" data-dx="-420" data-rot="-8" style="position: absolute; left: -190px; bottom: -170px; width: 380px; pointer-events: none; user-select: none; z-index: 0; will-change: transform;"><img src="uploads/mark-v.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.42; will-change: transform;"></div>
+
+    <div style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 480px; gap: 56px; align-items: center;" data-r="hero">
+      <div data-anim style="display: flex; flex-direction: column; gap: 22px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">pyRevit extension · Revit 2021–2026</div>
         <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em; text-wrap: balance;">Detailing and family housekeeping, without the click marathon.</h1>
         <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px; text-wrap: pretty;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.</p>
@@ -74,59 +112,70 @@
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 420px;">
-        <div data-r="mock" style="width: 420px; background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 2px; box-shadow: 0 18px 44px rgba(30,33,32,0.16);">
-          <div style="height: 52px; background: #5EA079; display: flex; align-items: center; padding: 0 8px 0 16px;">
-            <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF;">Select 2D Elements</div>
-            <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+      <div data-anim style="display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 480px;">
+        <div onMouseEnter="{{ pauseMock }}" onMouseLeave="{{ resumeMock }}" style="position: relative; height: 430px; perspective: 1500px; perspective-origin: 50% 44%; transform-style: preserve-3d;">
+          <sc-for list="{{ mockStack }}" as="m" hint-placeholder-count="4">
+            <div onClick="{{ m.go }}" style="position: absolute; top: 0; left: 0; width: 480px; transform-style: preserve-3d; cursor: pointer; will-change: transform, opacity; transition: transform 640ms cubic-bezier(0.22,1,0.36,1), opacity 420ms ease, filter 420ms ease; transform: {{ m.tf }}; opacity: {{ m.op }}; filter: {{ m.fx }}; z-index: {{ m.z }};">
+          <div data-r="mock" style="position: relative; width: 480px; background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px; transform-style: preserve-3d; box-shadow: {{ m.shadow }};">
+            <div style="position: absolute; inset: 0; z-index: 6; pointer-events: none; border-radius: 12px; overflow: hidden; background: linear-gradient(105deg, rgba(255,255,255,0) 34%, rgba(255,255,255,0.5) 46%, rgba(255,255,255,0) 58%); background-size: 260% 100%; animation: dcSheen 6.5s ease-in-out infinite;"></div>
+            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px; transform: translateZ(30px); box-shadow: 0 10px 22px rgba(30,33,32,0.14);">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ m.title }}</div>
+              <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
+            </div>
+            <div style="height: 2px; background: #EB664B; transform: translateZ(22px);"></div>
+            <div>
+              <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">{{ m.hint }}</div>
+              <div style="min-height: 184px;">
+                <sc-if value="{{ m.isGrid }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; transform-style: preserve-3d; transform: translateZ(14px);">
+                    <sc-for list="{{ m.cards }}" as="c" hint-placeholder-count="4">
+                      <div style="border: 1px solid {{ c.border }}; background: {{ c.bg }}; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <div style="width: 20px; height: 20px; border-radius: 4px; background: {{ c.numBg }}; color: {{ c.numFg }}; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">{{ c.n }}</div>
+                          <div style="flex: 1; font-size: 13px; font-weight: 600; color: {{ c.fg }};">{{ c.label }}</div>
+                        </div>
+                        <div style="font-size: 12px; font-family: Consolas, monospace; color: {{ c.metaFg }};">{{ c.meta }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.isRows }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px; transform-style: preserve-3d; transform: translateZ(14px);">
+                    <sc-for list="{{ m.rows }}" as="r" hint-placeholder-count="4">
+                      <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
+                        <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ r.label }}</div>
+                        <div style="font-family: Consolas, monospace; font-size: 12px; color: {{ r.valueFg }}; white-space: nowrap;">{{ r.value }}</div>
+                        <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: {{ r.chipFg }}; background: {{ r.chipBg }}; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">{{ r.chip }}</div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
+              <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px; transform: translateZ(8px);">
+                <img src="uploads/Logo w Text.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
+                <div style="flex: 1;"></div>
+                <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">{{ m.footer }}</div>
+              </div>
+            </div>
           </div>
-          <div style="height: 2px; background: #EB664B;"></div>
-          <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E;">Pick a category — the window closes immediately and you drag-select in the view. No Finish button.</div>
-          <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div style="border: 1px solid #5EA079; background: #EEF5F1; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #5EA079; color: #FFFFFF; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">1</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Tags</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #3D6E52;">128 in view</div>
-            </div>
-            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">2</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Detail Items</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">64 in view</div>
-            </div>
-            <div style="border: 1px solid #E2E6E4; background: #FFFFFF; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #5A6360; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">3</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #1E2120;">Filled Region</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #78827E;">12 in view</div>
-            </div>
-            <div style="border: 1px solid #E2E6E4; background: #F7F9F8; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 20px; height: 20px; border-radius: 4px; background: #EFF2F0; color: #A3ACA8; font-family: Consolas, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">4</div>
-                <div style="flex: 1; font-size: 13px; font-weight: 600; color: #A3ACA8;">Lines</div>
-              </div>
-              <div style="font-size: 12px; font-family: Consolas, monospace; color: #A3ACA8;">none in view</div>
-            </div>
           </div>
-          <div style="height: 1px; background: #EFF2F0; margin-top: 16px;"></div>
-          <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
-            <img src="uploads/Logo w Text.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
-            <div style="flex: 1;"></div>
-            <div style="font-size: 12px; color: #78827E;"><span style="font-family: Consolas, monospace;">1–4</span> or click · <span style="font-family: Consolas, monospace;">Esc</span> to cancel</div>
-          </div>
+          </sc-for>
         </div>
-        <div style="font-size: 12px; color: #78827E;">Actual dialog — one green band, one coral action, nothing else competing.</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="flex: 1; font-size: 12px; color: #78827E; animation: {{ mock.anim }} 460ms ease 120ms both;">{{ mock.caption }}</div>
+          <sc-for list="{{ mockDots }}" as="d" hint-placeholder-count="4">
+            <div onClick="{{ d.go }}" style="width: {{ d.w }}; height: 3px; border-radius: 2px; cursor: pointer; background: {{ d.bg }}; transition: background 220ms ease, width 320ms cubic-bezier(0.22,0.61,0.36,1);"></div>
+          </sc-for>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="tools" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4; border-bottom: 1px solid #E2E6E4;">
-    <div style="width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 36px;">
-      <div style="display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid #E2E6E4; padding-bottom: 18px;">
+  <section id="tools" style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4; border-bottom: 1px solid #E2E6E4;">
+      <div data-px data-speed="-0.22" data-dx="440" data-rot="10" style="position: absolute; right: -180px; top: 60px; width: 520px; pointer-events: none; user-select: none; z-index: 0; will-change: transform;"><img src="uploads/mark-v.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.32; will-change: transform;"></div>
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: flex; flex-direction: column; gap: 36px;">
+      <div data-anim style="display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid #E2E6E4; padding-bottom: 18px;">
         <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;">
           <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">What's inside</div>
           <div style="font-size: 26px; font-weight: 600; color: #1E2120;">The tab, panel by panel</div>
@@ -135,19 +184,33 @@
       </div>
 
       <sc-for list="{{ panels }}" as="panel" hint-placeholder-count="4">
-        <div data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+        <div data-anim data-r="panelrow" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
           <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="font-size: 16px; font-weight: 600; color: #1E2120;">{{ panel.name }}</div>
+            <div data-r="panelname" style="font-size: 16px; font-weight: 600; color: #1E2120;">{{ panel.name }}</div>
             <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">{{ panel.dir }}</div>
             <div style="font-size: 13px; line-height: 1.65; color: #78827E;">{{ panel.blurb }}</div>
             <sc-if value="{{ showToolCounts }}" hint-placeholder-val="{{ true }}">
               <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">{{ panel.count }}</div>
             </sc-if>
+            <div data-r="ribbon" style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 6px;">
+                <sc-for list="{{ panel.slots }}" as="slot" hint-placeholder-count="3">
+                  <div data-r="slot" style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                    <div data-r="glyph" style="width: 22px; height: 22px; border-radius: 3px; background: {{ slot.bg }};"></div>
+                    <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">{{ slot.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">{{ panel.name }}</div>
+            </div>
           </div>
           <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
             <sc-for list="{{ panel.tools }}" as="tool" hint-placeholder-count="4">
-              <div style="border: 1px solid #E2E6E4; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; background: #FFFFFF;" style-hover="border-color: #B9D5C5; background: #F7F9F8;">
-                <div style="font-size: 13px; font-weight: 600; color: #1E2120;">{{ tool.name }}</div>
+              <div data-anim data-r="toolcard" style="border: 1px solid #E2E6E4; border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; background: #FFFFFF;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div data-r="toolname" style="font-size: 13px; font-weight: 600; color: #1E2120;">{{ tool.name }}</div>
+                  <div data-r="toolarrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+                </div>
                 <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">{{ tool.desc }}</div>
               </div>
             </sc-for>
@@ -157,39 +220,21 @@
     </div>
   </section>
 
-  <sc-if value="{{ showFaq }}" hint-placeholder-val="{{ true }}">
-    <section id="faq" style="display: flex; justify-content: center; padding: 56px 24px; background: #FFFFFF; border-top: 1px solid #E2E6E4;">
-      <div data-r="faqouter" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 300px 1fr; gap: 48px;">
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">FAQ</div>
-          <div style="font-size: 26px; font-weight: 600; color: #1E2120; line-height: 1.2;">When something misbehaves</div>
-          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Most issues are a stale pyRevit cache. Reload first, then read on.</div>
-        </div>
-        <div style="display: flex; flex-direction: column;">
-          <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="5">
-            <div data-r="faqrow" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding: 18px 0; border-top: 1px solid #EFF2F0;">
-              <div style="font-size: 14px; font-weight: 600; color: #1E2120; line-height: 1.5;">{{ item.q }}</div>
-              <div style="font-size: 13px; line-height: 1.75; color: #5A6360; text-wrap: pretty;">{{ item.a }}</div>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </section>
-  </sc-if>
+  <section id="about" style="position: relative; overflow: hidden; display: flex; justify-content: center; padding: 64px 24px;">
+      <div data-px data-speed="0.2" data-dx="-400" data-rot="9" style="position: absolute; left: -140px; bottom: -120px; width: 620px; pointer-events: none; user-select: none; z-index: 0; will-change: transform;"><img src="uploads/mark-h.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.52; will-change: transform;"></div>
 
-  <section style="display: flex; justify-content: center; padding: 64px 24px;">
-    <div data-r="three" style="width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+    <div data-r="three" style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div data-anim style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52;">Contributing</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Issues and pull requests are welcome. New tools copy <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_window.xaml</span> and <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_script.py</span>, keep code and comments in English, and follow the shared style guide in <span style="font-family: Consolas, monospace; font-size: 12px;">lib/GUI/Resources/UI_GUIDELINE.md</span> — a dialog that invents its own colour won't be merged.</div>
         <a href="{{ issuesUrl }}" style="font-size: 13px; font-weight: 600; margin-top: 2px;">Open an issue →</a>
       </div>
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div data-anim style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6360;">License</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">MIT. Use it on commercial projects, fork it, ship it inside your office standard. Keep the copyright notice; the logo and wordmark stay with ArchiLoom.</div>
         <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E; margin-top: 2px;">© 2026 Nhan Nguyen Huu</div>
       </div>
-      <div style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div data-anim style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B44530;">Author</div>
         <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Built by <b style="color: #1E2120;">Nhan Nguyen Huu</b>, architect and BIM lead — every tool here started as a task that ate an afternoon. Feedback from real projects is the fastest way to shape the next one.</div>
         <a href="mailto:huunhan2261@gmail.com" style="font-size: 13px; font-weight: 600; margin-top: 2px;">huunhan2261@gmail.com</a>
@@ -197,26 +242,249 @@
     </div>
   </section>
 
-  <footer style="background: #1E2120; padding: 28px 24px; display: flex; justify-content: center;">
-    <div data-r="footrow" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
+  <footer style="position: relative; overflow: hidden; padding: 24px; display: flex; justify-content: center; border-top: 1px solid #E2E6E4;">
+    <div data-anim data-r="footrow" style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
       <img src="uploads/Logo w Text.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
       <div style="flex: 1; font-size: 12px; color: #78827E;">pyRevit extension · IronPython 2.7 · not affiliated with Autodesk</div>
-      <a href="{{ repoUrl }}" style="font-size: 12px; color: #CBD1CE; border-bottom-color: #5A6360;" style-hover="color: #FFFFFF; border-bottom-color: #A3ACA8;">GitHub</a>
+      <a href="{{ repoUrl }}" style="font-size: 12px; color: #5A6360; border-bottom-color: #CBD1CE;" style-hover="color: #1E2120; border-bottom-color: #78827E;">GitHub</a>
     </div>
   </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;repoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://github.com/huunhan2261/archiloom&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showToolCounts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showFaq&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;repoUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://github.com/huunhan2261/archiloom&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showToolCounts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 class Component extends DCLogic {
+  state = { mock: 0, tick: 0 };
+  mockPaused = false;
+  goMock(i) {
+    const n = this.mockLen || 4;
+    const next = (i + n) % n;
+    if (next === this.state.mock) return;
+    this.setState((st) => ({ mock: next, tick: st.tick + 1 }));
+  }
+
+  componentDidMount() {
+    const root = this.dcRoot || document;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce) {
+      const groups = new Map();
+      const all = () => Array.prototype.slice.call(document.querySelectorAll("[data-anim]"));
+      const els = all();
+      const prep = (el) => {
+        if (el.dataset.animPrep) return;
+        el.dataset.animPrep = "1";
+        const k = el.parentElement;
+        const n = groups.get(k) || 0;
+        groups.set(k, n + 1);
+        const grid = k && /grid/.test(getComputedStyle(k).display);
+        const dx = grid ? (n % 2 === 0 ? -10 : 10) : 0;
+        el.style.opacity = "0";
+        el.dataset.animFrom = "translate3d(" + dx + "px, 16px, 0)";
+        el.style.transform = el.dataset.animFrom;
+        el.style.backfaceVisibility = "hidden";
+        const d = n * (grid ? 40 : 70);
+        el.dataset.animTrans = "opacity 460ms cubic-bezier(0.33,1,0.68,1) " + d + "ms, transform 560ms cubic-bezier(0.33,1,0.68,1) " + d + "ms";
+        el.style.transition = el.dataset.animTrans;
+      };
+      this.prep = prep;
+      els.forEach(prep);
+      const reveal = () => {
+        const list = all();
+        list.forEach(prep);
+        const vh = window.innerHeight || 800;
+        const reads = list.map((el) => {
+          const r = el.getBoundingClientRect();
+    return { el: el, top: r.top, bottom: r.bottom };
+        });
+        let pending = 0;
+        const resets = [];
+        reads.forEach((m) => {
+          const on = !!m.el.dataset.animDone;
+          const show = m.top < vh * 0.9 && m.bottom > vh * 0.02;
+          const hide = m.top > vh * 1.02 || m.bottom < -vh * 0.12;
+          if (!on && show) {
+            m.el.dataset.animDone = "1";
+            m.el.style.opacity = "1";
+            m.el.style.transform = "none";
+          } else if (on && hide) {
+            delete m.el.dataset.animDone;
+            m.el.style.transition = "none";
+            m.el.style.opacity = "0";
+            m.el.style.transform = m.el.dataset.animFrom || "translate3d(0, 16px, 0)";
+            resets.push(m.el);
+            pending++;
+          } else if (!on) pending++;
+        });
+        if (resets.length) {
+          requestAnimationFrame(() => {
+            resets.forEach((el) => { el.style.transition = el.dataset.animTrans || ""; });
+          });
+        }
+        return pending;
+      };
+      let raf = 0;
+      const pxEls = Array.prototype.slice.call(document.querySelectorAll("[data-px]"));
+      const parallax = () => {
+        const vh = window.innerHeight || 800;
+        const reads = pxEls.map((el) => {
+          const r = el.parentElement.getBoundingClientRect();
+    return { el: el, mid: r.top + r.height / 2 };
+        });
+        reads.forEach((m) => {
+          const sp = parseFloat(m.el.dataset.speed) || 0.15;
+          const dx = parseFloat(m.el.dataset.dx) || 0;
+          const rot = parseFloat(m.el.dataset.rot) || 0;
+          const t = Math.max(-1, Math.min(1, (m.mid - vh / 2) / vh));
+          const y = t * vh * sp * 2.1;
+          const x = t * dx;
+          const scale = 1 + (1 - Math.abs(t)) * 0.75;
+          const r = t * rot;
+          m.el.style.transform = "translate3d(" + x.toFixed(1) + "px, " + y.toFixed(1) + "px, 0) rotate(" + r.toFixed(2) + "deg) scale(" + scale.toFixed(3) + ")";
+        });
+      };
+      this.parallax = parallax;
+      parallax();
+      const onScrollReveal = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = 0; reveal(); parallax(); });
+      };
+      this.onScrollReveal = onScrollReveal;
+      this.reveal = reveal;
+      requestAnimationFrame(reveal);
+      window.addEventListener("scroll", onScrollReveal, { passive: true, capture: true });
+      window.addEventListener("resize", onScrollReveal);
+      let ticks = 0;
+      this.revealTimer = setInterval(() => {
+        ticks++;
+        reveal();
+        if (ticks > 10) clearInterval(this.revealTimer);
+      }, 300);
+      this.mockTimer = setInterval(() => {
+        if (!this.mockPaused && !document.hidden) this.goMock(this.state.mock + 1);
+      }, 3000);
+    }
+    const header = document.querySelector('[data-r="header"]');
+    this.onScroll = () => {
+      if (!header) return;
+      header.style.boxShadow = window.scrollY > 8 ? "0 8px 24px rgba(30,33,32,0.10)" : "none";
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() {
+    if (this.mockTimer) clearInterval(this.mockTimer);
+    if (this.revealTimer) clearInterval(this.revealTimer);
+    if (this.onScrollReveal) { window.removeEventListener("scroll", this.onScrollReveal, { capture: true }); window.removeEventListener("resize", this.onScrollReveal); }
+    window.removeEventListener("scroll", this.onScroll);
+  }
   renderVals() {
     const repo = this.props.repoUrl ?? "https://github.com/huunhan2261/archiloom";
+    const card = (n, label, meta, state) => ({
+      n: n, label: label, meta: meta,
+      border: state === "active" ? "#5EA079" : "#E2E6E4",
+      bg: state === "active" ? "#EEF5F1" : state === "off" ? "#F7F9F8" : "#FFFFFF",
+      numBg: state === "active" ? "#5EA079" : "#EFF2F0",
+      numFg: state === "active" ? "#FFFFFF" : state === "off" ? "#A3ACA8" : "#5A6360",
+      fg: state === "off" ? "#A3ACA8" : "#1E2120",
+      metaFg: state === "active" ? "#3D6E52" : state === "off" ? "#A3ACA8" : "#78827E"
+    });
+    const row = (label, value, chip, tone) => ({
+      label: label, value: value, chip: chip,
+      valueFg: tone === "new" ? "#3D6E52" : tone === "warn" ? "#B44530" : "#1E2120",
+      chipFg: tone === "new" ? "#3D6E52" : tone === "warn" ? "#B44530" : "#5A6360",
+      chipBg: tone === "new" ? "#EEF5F1" : tone === "warn" ? "#FDEDE9" : "#EFF2F0"
+    });
+    const mocks = [
+      {
+        title: "Select 2D Elements",
+        hint: "Pick a category — the window closes immediately and you drag-select in the view. No Finish button.",
+        isGrid: true, isRows: false,
+        cards: [card(1, "Tags", "128 in view", "active"), card(2, "Detail Items", "64 in view"), card(3, "Filled Region", "12 in view"), card(4, "Lines", "none in view", "off")],
+        footer: "1–4 or click · Esc to cancel",
+        caption: "Select 2D Elements — one green band, one coral action, nothing else competing."
+      },
+      {
+        title: "Batch Family Rename",
+        hint: "Replace \"DT_\" with \"Detail_\" across 24 families. Preview every rename before anything is written.",
+        isGrid: false, isRows: true,
+        rows: [row("DT_Wall Base", "Detail_Wall Base", "rename"), row("DT_Ceiling Trim", "Detail_Ceiling Trim", "rename"), row("DT_Coping A", "Detail_Coping A", "rename"), row("DT_Coping A_old", "name taken", "skip", "warn")],
+        footer: "24 families · 1 transaction",
+        caption: "Batch Family Rename — before/after preview, duplicates flagged before commit."
+      },
+      {
+        title: "Detail Type Excel Sync",
+        hint: "Imported 3 changes from ArchiLoom_DetailTypes.xlsx. Review the diff, then write to the model.",
+        isGrid: false, isRows: true,
+        rows: [row("Coping — Type Mark", "CP-01 → CP-11", "changed", "warn"), row("Flashing — Description", "Alu 1.2mm", "changed", "warn"), row("Sealant — Type Mark", "SL-04", "new", "new"), row("Reveal — Description", "unchanged", "skip")],
+        footer: "3 of 41 rows differ",
+        caption: "Detail Type Excel Sync — a diff review stands between Excel and your model."
+      },
+      {
+        title: "Apply Sheet Layout",
+        hint: "Drop the saved viewport arrangement of A-201 onto the rest of the set, one sheet at a time or all at once.",
+        isGrid: false, isRows: true,
+        rows: [row("A-202 — Wall Sections", "4 viewports", "applied", "new"), row("A-203 — Wall Sections", "4 viewports", "applied", "new"), row("A-204 — Details", "3 viewports", "queued"), row("A-205 — Details", "layout differs", "review", "warn")],
+        footer: "Source: A-201 · Ctrl+Z reverts all",
+        caption: "Apply Sheet Layout — one saved arrangement, a whole sheet set consistent."
+      }
+    ];
+    this.mockLen = mocks.length;
+    const mi = this.state.mock;
+    const alt = this.state.tick % 2 === 1;
+    const anim = alt ? "dcIn2" : "dcIn";
+    const active = Object.assign({}, mocks[mi], {
+      anim: anim,
+      titleAnim: alt ? "dcTitleIn2" : "dcTitleIn",
+      sweepAnim: alt ? "dcSweep2" : "dcSweep"
+    });
+    if (active.cards) active.cards = active.cards.map((c, i) => Object.assign({}, c, { anim: anim, delay: (100 + i * 70) + "ms" }));
+    if (active.rows) active.rows = active.rows.map((r, i) => Object.assign({}, r, { anim: anim, delay: (100 + i * 70) + "ms" }));
+    const withSlots = (arr) => arr.map((pn) => Object.assign({}, pn, {
+      slots: (pn.tools || []).slice(0, 3).map((t, i) => ({ label: t.name, bg: i === 0 ? "#5EA079" : i === 1 ? "#EB664B" : "#A3ACA8" }))
+    }));
     return {
+      mock: active,
+      mockStack: mocks.map((m, i) => {
+        const r = (i - mi + mocks.length) % mocks.length;
+        const poses = [
+          { tf: "translate3d(0px, 0px, 0px) rotateY(-3deg) rotateX(1deg) scale(1)", op: 1, fx: "none", shadow: "0 26px 60px rgba(30,33,32,0.22)" },
+          { tf: "translate3d(122px, -104px, -520px) rotateY(-26deg) rotateX(9deg) scale(1)", op: 0.4, fx: "blur(1.2px)", shadow: "0 16px 36px rgba(30,33,32,0.12)" },
+          { tf: "translate3d(-138px, 24px, -760px) rotateY(24deg) rotateX(-5deg) scale(1)", op: 0.28, fx: "blur(2px)", shadow: "0 16px 36px rgba(30,33,32,0.1)" },
+          { tf: "translate3d(96px, 138px, -640px) rotateY(-18deg) rotateX(-8deg) scale(1)", op: 0.32, fx: "blur(1.6px)", shadow: "0 16px 36px rgba(30,33,32,0.1)" }
+        ];
+        const p = poses[r % poses.length];
+        return Object.assign({}, m, p, { z: 40 - r, go: () => this.goMock(i) });
+      }),
+      mockDots: mocks.map((m, i) => ({ bg: i === mi ? "#EB664B" : "#CBD1CE", w: i === mi ? "34px" : "16px", go: () => this.goMock(i) })),
+      pauseMock: () => { this.mockPaused = true; },
+      resumeMock: () => { this.mockPaused = false; },
+      tiltMove: (e) => {
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const el = e.currentTarget;
+        const b = el.getBoundingClientRect();
+        const px = (e.clientX - b.left) / b.width;
+        const py = (e.clientY - b.top) / b.height;
+        const ry = (px - 0.5) * 16;
+        const rx = (0.5 - py) * 12;
+        el.style.transition = "transform 120ms linear";
+        el.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg) scale(1.015)";
+        const g = el.querySelector('[data-r="glare"]');
+        if (g) {
+          g.style.opacity = "1";
+          g.style.background = "radial-gradient(420px circle at " + (px * 100).toFixed(1) + "% " + (py * 100).toFixed(1) + "%, rgba(255,255,255,0.6), rgba(255,255,255,0) 62%)";
+        }
+      },
+      tiltLeave: (e) => {
+        const el = e.currentTarget;
+        el.style.transition = "transform 520ms cubic-bezier(0.22,0.61,0.36,1)";
+        el.style.transform = "";
+        const g = el.querySelector('[data-r="glare"]');
+        if (g) g.style.opacity = "0";
+      },
       repoUrl: repo,
       releasesUrl: repo + "/releases/latest",
       issuesUrl: repo + "/issues",
       showToolCounts: this.props.showToolCounts ?? true,
-      showFaq: this.props.showFaq ?? true,
-      panels: [
+      panels: withSlots([
         {
           name: "Detailing",
           dir: "Detailing.panel",
@@ -269,15 +537,7 @@ class Component extends DCLogic {
             { name: "Relayout Settings", desc: "Spacing and alignment defaults shared by the layout tools." }
           ]
         }
-      ],
-      faqs: [
-        { q: "The tab doesn't appear in Revit", a: "pyRevit → Settings → Custom Extensions Directories → add the folder that contains ArchiLoom.extension (not the extension folder itself), then Reload. If it still hides, check that pyRevit loaded at all — a failed CLR load takes every extension with it." },
-        { q: "A dialog opens with the wrong colours", a: "Old cached styles. Reload pyRevit; if one window is still off, its XAML predates UI Standard v2 and its header is written inline. That's cosmetic — the tool runs fine." },
-        { q: "\"Cannot find resource named ...\"", a: "apply_theme(self) must be called before forms.WPFWindow.__init__(self, xaml). LoadComponent resolves every StaticResource immediately, so a theme merged afterwards arrives too late." },
-        { q: "Numbers show up in feet", a: "Revit stores length in feet internally. Every ArchiLoom dialog displays and accepts mm and converts on the way in and out — if you see feet, you're reading a raw parameter, not a tool field." },
-        { q: "Can I undo a batch run?", a: "Yes. Every model change is wrapped in a single transaction named after the tool, so one Ctrl+Z reverts the whole run — 24 renames included." },
-        { q: "Which Revit versions are supported?", a: "2021 through 2026, on pyRevit's IronPython 2.7 engine. Nothing in the codebase depends on a version-specific API, but new releases are only smoke-tested on 2024 and 2026." }
-      ]
+      ]),
     };
   }
 }

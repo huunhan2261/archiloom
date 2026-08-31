@@ -1,0 +1,5 @@
+Select the families to rename in the Project Browser, or leave the selection empty to include every loaded family.
+Open the Family panel and click Batch Family Rename.
+Enter a find/replace rule, or a prefix/suffix.
+Review the before/after preview — duplicate names are flagged in red.
+Click Apply to commit every rename in a single transaction.
