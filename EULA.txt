@@ -1,0 +1,63 @@
+END USER LICENSE AGREEMENT (EULA)
+Archiloom for Revit
+Copyright (c) 2026 Nhan. All rights reserved.
+
+This End User License Agreement ("Agreement") is a legal agreement between
+you ("User") and the author of Archiloom ("Author") for the software
+product Archiloom, including the installer (.exe or .msi), executable
+files, and any associated documentation (the "Software").
+
+By downloading, installing, or using the Software, you agree to be bound
+by the terms of this Agreement. If you do not agree, do not install or
+use the Software.
+
+1. GRANT OF LICENSE
+   The Author grants you a personal, non-exclusive, non-transferable,
+   royalty-free license to install and use the Software for your own
+   use, free of charge.
+
+2. RESTRICTIONS
+   You may NOT:
+   a. Modify, decompile, disassemble, reverse-engineer, or otherwise
+      attempt to derive the source code of the Software.
+   b. Redistribute, resell, sublicense, rent, lease, or otherwise make
+      the Software available to third parties, whether for a fee or
+      free of charge, without prior written permission from the Author.
+   c. Remove or alter any copyright, trademark, or other proprietary
+      notices contained in the Software.
+   d. Use the Software for any unlawful purpose.
+
+3. OWNERSHIP
+   The Software is licensed, not sold. The Author retains all right,
+   title, and interest in and to the Software, including all
+   intellectual property rights therein. This Agreement does not grant
+   you any rights to trademarks, service marks, or trade names of the
+   Author.
+
+4. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NONINFRINGEMENT. THE AUTHOR DOES NOT GUARANTEE THAT THE SOFTWARE
+   WILL BE ERROR-FREE OR UNINTERRUPTED.
+
+5. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DAMAGES WHATSOEVER
+   (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF DATA, LOSS OF
+   PROFITS, OR OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR
+   INABILITY TO USE THE SOFTWARE, EVEN IF THE AUTHOR HAS BEEN ADVISED
+   OF THE POSSIBILITY OF SUCH DAMAGES.
+
+6. THIRD-PARTY SOFTWARE
+   The Software integrates with Autodesk Revit via the Revit API. This
+   Agreement does not grant any rights to Autodesk Revit, which remains
+   governed by its own license terms.
+
+7. TERMINATION
+   This Agreement is effective until terminated. The Author may
+   terminate this license at any time if you fail to comply with its
+   terms. Upon termination, you must uninstall and destroy all copies
+   of the Software.
+
+By installing or using Archiloom, you acknowledge that you have read,
+understood, and agree to be bound by the terms of this Agreement.

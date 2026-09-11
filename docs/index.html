@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ArchiLoom — pyRevit extension for detailing &amp; family housekeeping</title>
-<meta name="description" content="ArchiLoom is a Revit ribbon tab of 20 small, sharp tools across 4 panels for detailing and family housekeeping — renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts.">
+<title>ArchiLoom — Revit add-in for detailing &amp; family housekeeping</title>
+<meta name="description" content="ArchiLoom is a Revit ribbon tab of 18 small, sharp tools across 4 panels for detailing and family housekeeping — renaming families in bulk, syncing parameters through Excel, laying out detail items, and auditing filters and view templates.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <style>
   * { box-sizing: border-box; }
@@ -41,7 +41,7 @@
   .btn-download:active { transform: translateY(1px); }
 
   #mock-stage { position: relative; height: 430px; perspective: 1500px; perspective-origin: 50% 44%; }
-  .mock-slide { position: absolute; top: 0; left: 0; width: 480px; border-radius: 12px; transition: transform 640ms cubic-bezier(0.22,1,0.36,1), opacity 420ms ease, filter 420ms ease; }
+  .mock-slide { position: absolute; top: 0; left: 0; width: 480px; border-radius: 0; transition: transform 640ms cubic-bezier(0.22,1,0.36,1), opacity 420ms ease, filter 420ms ease; }
   .mock-float { animation: mockFloat 4.6s ease-in-out infinite; }
   #mock-stage > .mock-slide:nth-child(2) .mock-float { animation-delay: -1.15s; }
   #mock-stage > .mock-slide:nth-child(3) .mock-float { animation-delay: -2.3s; }
@@ -141,16 +141,16 @@
     <div data-parallax data-speed="0.16" data-dx="-420" data-rot="-8" style="position: absolute; left: -190px; bottom: -170px; width: 380px; pointer-events: none; user-select: none; z-index: 0;"><img src="assets/mark-v.png" alt="" aria-hidden="true" style="display: block; width: 100%; opacity: 0.42;"></div>
     <div style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 480px; gap: 56px; align-items: center;" data-r="hero">
       <div class="reveal" style="display: flex; flex-direction: column; gap: 22px;">
-        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">pyRevit extension · Revit 2021–2026</div>
-        <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em;">Detailing and family housekeeping, without the click marathon.</h1>
-        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, syncing detail type data through Excel, laying out detail items, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.</p>
+        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">Native Revit add-in · C# / .NET 8 · Revit 2026</div>
+        <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em;">Detailing, family housekeeping, Checking, and Camwalk.</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, laying out detail items and sheet guides, and auditing tags, filters and view templates before you issue drawings. Then there's Camwalk — the one tool on this ribbon that isn't a dialog: a live, game-style fly-through camera for walking your 3D views. Every dialog follows one UI standard, so you learn the pattern once.</p>
         <div style="display: flex; gap: 10px; align-items: center; padding-top: 4px;">
           <a href="https://github.com/huunhan2261/archiloom/releases/latest" class="btn-primary" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Download latest</a>
-          <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Source on GitHub</a>
+          <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">GitHub</a>
         </div>
         <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
-            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">20</div>
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">18</div>
             <div style="font-size: 12px; color: #78827E;">tools</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
@@ -158,7 +158,7 @@
             <div style="font-size: 12px; color: #78827E;">ribbon panels</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
-            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">MIT</div>
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">Freeware</div>
             <div style="font-size: 12px; color: #78827E;">license</div>
           </div>
         </div>
@@ -168,12 +168,12 @@
         <div id="mock-stage">
 
           <div class="mock-slide mock-pos-0" data-mock-slide>
-            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
-            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #5A6360; border-radius: 0;">
+            <div style="height: 52px; background: #5EA079; border-radius: 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
               <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Select 2D Elements</div>
               <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
             </div>
-            <div style="height: 2px; background: #EB664B;"></div>
+            <div style="height: 3px; background: #EB664B;"></div>
             <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Pick a category — the window closes immediately and you drag-select in the view. No Finish button.</div>
             <div style="min-height: 184px;">
               <div style="padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -217,13 +217,13 @@
           </div>
 
           <div class="mock-slide mock-pos-1" data-mock-slide>
-            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
-            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
-              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Batch Family Rename</div>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #5A6360; border-radius: 0;">
+            <div style="height: 52px; background: #5EA079; border-radius: 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Batch Rename</div>
               <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
             </div>
-            <div style="height: 2px; background: #EB664B;"></div>
-            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Replace &quot;DT_&quot; with &quot;Detail_&quot; across 24 families. Preview every rename before anything is written.</div>
+            <div style="height: 3px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Loadable Family mode: replace &quot;DT_&quot; with &quot;Detail_&quot; across 24 families. Preview every rename before anything is written.</div>
             <div style="min-height: 184px;">
               <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
                 <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
@@ -258,13 +258,13 @@
           </div>
 
           <div class="mock-slide mock-pos-2" data-mock-slide>
-            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
-            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
-              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Detail Type Excel Sync</div>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #5A6360; border-radius: 0;">
+            <div style="height: 52px; background: #5EA079; border-radius: 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Parameter Excel Sync</div>
               <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
             </div>
-            <div style="height: 2px; background: #EB664B;"></div>
-            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Imported 3 changes from ArchiLoom_DetailTypes.xlsx. Review the diff, then write to the model.</div>
+            <div style="height: 3px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Pulled 3 changed values back from ArchiLoom_Params.xlsx after review — nothing else in the model is touched.</div>
             <div style="min-height: 184px;">
               <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
                 <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
@@ -299,34 +299,25 @@
           </div>
 
           <div class="mock-slide mock-pos-3" data-mock-slide>
-            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #CBD1CE; border-radius: 12px;">
-            <div style="height: 52px; background: #5EA079; border-radius: 11px 11px 0 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
-              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Apply Sheet Layout</div>
+            <div class="mock-float"><div style="background: #FFFFFF; border: 1px solid #5A6360; border-radius: 0;">
+            <div style="height: 52px; background: #5EA079; border-radius: 0; display: flex; align-items: center; padding: 0 8px 0 16px;">
+              <div style="flex: 1; font-size: 20px; font-weight: 600; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Camwalk</div>
               <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 13px;">✕</div>
             </div>
-            <div style="height: 2px; background: #EB664B;"></div>
-            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">Drop the saved viewport arrangement of A-201 onto the rest of the set, one sheet at a time or all at once.</div>
-            <div style="min-height: 184px;">
-              <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 6px;">
-                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
-                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-202 — Wall Sections</div>
-                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #3D6E52; white-space: nowrap;">4 viewports</div>
-                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">applied</div>
-                </div>
-                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
-                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-203 — Wall Sections</div>
-                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #3D6E52; white-space: nowrap;">4 viewports</div>
-                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">applied</div>
-                </div>
-                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
-                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-204 — Details</div>
-                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #1E2120; white-space: nowrap;">3 viewports</div>
-                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6360; background: #EFF2F0; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">queued</div>
-                </div>
-                <div style="border: 1px solid #E2E6E4; border-radius: 6px; padding: 9px 12px; display: flex; align-items: center; gap: 10px; background: #FFFFFF;">
-                  <div style="flex: 1; min-width: 0; font-size: 12px; color: #5A6360; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">A-205 — Details</div>
-                  <div style="font-family: Consolas, monospace; font-size: 12px; color: #B44530; white-space: nowrap;">layout differs</div>
-                  <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #B44530; background: #FDEDE9; padding: 2px 6px; border-radius: 3px; white-space: nowrap;">review</div>
+            <div style="height: 3px; background: #EB664B;"></div>
+            <div style="padding: 14px 16px 12px; font-size: 12px; line-height: 1.6; color: #78827E; min-height: 34px;">The one tool here that isn't a dialog — a live, game-style fly-through for your 3D view.</div>
+            <div style="min-height: 184px; padding: 0 16px;">
+              <div style="position: relative; height: 184px; background: linear-gradient(160deg, #2E3230 0%, #1E2120 72%); border: 1px solid #3F4643; overflow: hidden;">
+                <div style="position: absolute; left: 50%; bottom: 0; width: 320px; height: 86px; transform: translateX(-50%) perspective(220px) rotateX(58deg); background: repeating-linear-gradient(90deg, rgba(94,160,121,0.4) 0 1px, transparent 1px 32px); opacity: 0.65;"></div>
+                <div style="position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; transform: translate(-50%, -50%); border: 1px solid rgba(255,255,255,0.5); border-radius: 50%;"></div>
+                <img src="assets/icons/camwalk.png" alt="" style="position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; display: block;">
+                <div style="position: absolute; top: 14px; right: 12px; font-family: Consolas, monospace; font-size: 11px; color: #F5B8A9;">SPEED 3.2×</div>
+                <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px;">
+                  <div style="width: 24px; height: 24px; border: 1px solid #5EA079; background: rgba(94,160,121,0.35); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 10px; font-family: Consolas, monospace;">W</div>
+                  <div style="width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65); font-size: 10px; font-family: Consolas, monospace;">A</div>
+                  <div style="width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65); font-size: 10px; font-family: Consolas, monospace;">S</div>
+                  <div style="width: 24px; height: 24px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.65); font-size: 10px; font-family: Consolas, monospace;">D</div>
+                  <div style="width: 24px; height: 24px; border: 1px solid #EB664B; background: rgba(235,102,75,0.32); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 12px;">↺</div>
                 </div>
               </div>
             </div>
@@ -334,7 +325,7 @@
             <div style="padding: 10px 16px 12px; display: flex; align-items: center; gap: 12px;">
               <img src="assets/logo.png" alt="ArchiLoom" style="height: 16px; width: auto; display: block;">
               <div style="flex: 1;"></div>
-              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">Source: A-201 · Ctrl+Z reverts all</div>
+              <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E;">Save Viewpoint (C) · Viewpoints (V)</div>
             </div>
             </div></div>
           </div>
@@ -359,119 +350,24 @@
           <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #B44530;">What's inside</div>
           <div style="font-size: 26px; font-weight: 600; color: #1E2120;">The tab, panel by panel</div>
         </div>
-        <div style="font-size: 13px; line-height: 1.65; color: #78827E; width: 340px;">Order on the ribbon follows each panel's <span style="font-family: Consolas, monospace; font-size: 12px;">bundle.yaml</span>. Every button ships a tooltip with a short How-to.</div>
-      </div>
-
-      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Detailing</div>
-          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Detailing.panel</div>
-          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Detail items, line styles and sheet layouts — the repetitive half of documentation.</div>
-          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">9 tools</div>
-          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; gap: 6px;">
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Type Excel Sync</div>
-              </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Type List</div>
-              </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Detail Item Layout</div>
-              </div>
-            </div>
-            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Detailing</div>
-          </div>
-        </div>
-        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type Excel Sync</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Export detail types to Excel, edit Type Mark and Description, import back through a diff review before anything is written.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Type List</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">One searchable list of every detail type in the model, with sheet references and placed counts.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Layout</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Place and align detail items on a grid instead of nudging them one by one.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Views</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Jump to every view where a detail item is placed, straight from the list.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Sync Detail Item Params</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Push shared parameter values across matching detail items in one transaction.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Select 2D Elements</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Pick a 2D category, the window closes and you drag-select only that category in the view.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Save Sheet Layout</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Store the viewport arrangement of a sheet as a reusable layout.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Apply Sheet Layout</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Drop a saved layout onto other sheets so a set stays consistent.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Manage Line Styles</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Review, rename and purge line styles; Quick Line Style assigns one to a selection in a keystroke.</div>
-          </div>
-        </div>
+        <div style="font-size: 13px; line-height: 1.65; color: #78827E; width: 340px;">Order on the ribbon follows <span style="font-family: Consolas, monospace; font-size: 12px;">ArchiLoomApp.OnStartup</span>. Every button ships a tooltip with a short How-to. Click a tool card for a demo.</div>
       </div>
 
       <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Family</div>
-          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Family.panel</div>
           <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Naming and cleanup for families and types — bulk edits with a preview you can trust.</div>
-          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">6 tools</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">4 tools</div>
           <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; gap: 6px;">
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Batch Family Rename</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/family-rename.png" alt="Family Rename" style="width: 28px; height: 28px; display: block;">
               </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Batch Family Type Rename</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/family-duplicate.png" alt="Family Duplicate" style="width: 28px; height: 28px; display: block;">
               </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Family Rename</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/batch-rename.png" alt="Batch Rename" style="width: 28px; height: 28px; display: block;">
               </div>
             </div>
             <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Family</div>
@@ -480,132 +376,195 @@
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Rename</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Find, replace, prefix and suffix across families, with a before/after preview and duplicate handling.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Family Type Rename</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">The same rule engine applied one level down, at type level.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
               <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Rename</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rename the family of the current selection, applied to every type it owns.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rename the family used by the selected family instance(s), applied to every type it owns.</div>
           </div>
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Family Duplicate</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Duplicate a family and its types under a new name without leaving the model.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Duplicate a family under a new name straight in the model and switch the selected instances over — no Save As, no reload.</div>
           </div>
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item From Selection</div>
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Batch Rename</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Turn the selected 2D geometry into a new detail item family, placed back in the view.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rename Loadable Families, Loadable Family Types, System Family Types or Materials in bulk, PowerRename-style, with a live preview and an Excel round-trip.</div>
           </div>
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Purge Family Parameters</div>
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Purge Family Params</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">List unused family parameters and remove them, skipping anything bound to a schedule.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">List unused family parameters and delete them — ones still referenced elsewhere have their formula/value cleared instead and are kept.</div>
           </div>
         </div>
       </div>
 
       <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Elements</div>
-          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Elements.panel</div>
-          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Model-side edits on whatever you already have selected.</div>
-          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">2 tools</div>
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Detailing</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Detail items, line styles and sheet layouts — the repetitive half of documentation.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">6 tools</div>
           <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; gap: 6px;">
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Rotate Multiple</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/detail-item-lookup.png" alt="Detail Item Lookup" style="width: 28px; height: 28px; display: block;">
               </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Category Filter</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/detail-item-from-selection.png" alt="Detail Item From Selection" style="width: 28px; height: 28px; display: block;">
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/select-2d-elements.png" alt="Select 2D Elements" style="width: 28px; height: 28px; display: block;">
               </div>
             </div>
-            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Elements</div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Detailing</div>
           </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Rotate Multiple</div>
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item Lookup</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rotate every selected element around its own centre by one angle.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">List every view containing the selected detail item type, with its sheet and instance count, to review one by one.</div>
           </div>
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Category Filter</div>
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Detail Item From Selection</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Narrow a mixed selection down to a single category before running anything else.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Turn selected detail lines, filled regions or detail components into a new detail item family, loaded straight back in.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Select 2D Elements</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Rectangle-select only one kind of 2D element at a time — tags, detail items, filled regions or lines.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Quick Line Style</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Remap the line style of selected lines/filled regions — group by current style, map each group to a new one in one pass.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Save Sheet Guide</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Capture guide lines drawn on the active sheet and save them as a named preset for reuse on other sheets.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Apply Sheet Guide</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Recreate a saved sheet guide as detail lines on target sheets, so new viewports line up across a set.</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #EFF2F0;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Checking</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Auditing and QA on the model you already have — catch gaps before you issue drawings.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">7 tools</div>
+          <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 6px;">
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/missing-tag-check.png" alt="Missing Tag Check" style="width: 28px; height: 28px; display: block;">
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/highlight-annotations.png" alt="Highlight Annotations" style="width: 28px; height: 28px; display: block;">
+              </div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/color-swatch-highlight.png" alt="Color Swatch Highlight" style="width: 28px; height: 28px; display: block;">
+              </div>
+            </div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Checking</div>
+          </div>
+        </div>
+        <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Missing Tag Check</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Find every element of a category — or your own saved rule — with no tag in the active view, from a dockable pane you can highlight from.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Highlight Annotations</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Colour-override every instance of chosen annotation categories in the active view, so gaps stand out visually.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Color Swatch Highlight</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Colour-override elements by a parameter value using saved, reusable rule sets — unique values, keywords or number ranges.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">3D Crop From View</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Match your Default 3D View's section box to the crop region of the active 2D view, for a quick QA look.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Parameter Excel Sync</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Push and pull instance or type parameter values between Revit and Excel, filtered by category, workset, family or selection.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Filter Audit</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Audit every view filter in the project — where it's applied, its rules — then review, rename, edit or purge the unused ones.</div>
+          </div>
+          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">View Template Audit</div>
+              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
+            </div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Audit every view template by how many views actually use it, then review, rename or purge the unused ones.</div>
           </div>
         </div>
       </div>
 
       <div data-r="panelrow" class="reveal" style="display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 0; border-bottom: none;">
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Sandbox</div>
-          <div style="font-family: Consolas, monospace; font-size: 12px; color: #A3ACA8;">Sandbox.panel</div>
-          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">Newer tools still earning their place on the ribbon. Stable enough to use, not yet frozen.</div>
-          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">3 tools</div>
+          <div style="font-size: 16px; font-weight: 600; color: #1E2120;">Visual</div>
+          <div style="font-size: 13px; line-height: 1.65; color: #78827E;">The one tool on this ribbon that isn't a dialog — a live, game-style fly-through camera for your 3D views.</div>
+          <div style="align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52; background: #EEF5F1; border: 1px solid #B9D5C5; padding: 3px 8px; border-radius: 3px;">1 tool</div>
           <div style="margin-top: 6px; border: 1px solid #E2E6E4; border-radius: 4px; background: #F7F9F8; padding: 10px 10px 6px; display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; gap: 6px;">
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #5EA079;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Tag Detail Items</div>
-              </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #EB664B;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Resize Filled Region</div>
-              </div>
-              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 8px 6px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <div style="width: 22px; height: 22px; border-radius: 3px; background: #A3ACA8;"></div>
-                <div style="font-size: 9px; line-height: 1.25; text-align: center; color: #5A6360; overflow: hidden;">Relayout Settings</div>
+              <div style="flex: 1; min-width: 0; background: #FFFFFF; border: 1px solid #E2E6E4; border-radius: 3px; padding: 12px 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/icons/camwalk.png" alt="Camwalk" style="width: 28px; height: 28px; display: block;">
               </div>
             </div>
-            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Sandbox</div>
+            <div style="text-align: center; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #A3ACA8; border-top: 1px solid #E2E6E4; padding-top: 5px;">Visual</div>
           </div>
         </div>
         <div data-r="toolgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start;">
           <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Tag Detail Items</div>
+              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Camwalk</div>
               <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
             </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Tag every untagged detail item in the view with the tag family you pick.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Resize Filled Region</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Resize a filled region numerically in mm instead of dragging its boundary.</div>
-          </div>
-          <div class="tool-card reveal" style="border-radius: 4px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div class="tool-name" style="font-size: 13px; font-weight: 600; color: #1E2120;">Relayout Settings</div>
-              <div class="tool-arrow" style="font-size: 13px; font-weight: 600; color: #EB664B;">→</div>
-            </div>
-            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Spacing and alignment defaults shared by the layout tools.</div>
+            <div style="font-size: 12px; line-height: 1.6; color: #5A6360;">Turn the active 3D camera view into a live fly-through with an on-screen HUD or WASD, and bookmark viewpoints as you go.</div>
           </div>
         </div>
       </div>
@@ -617,17 +576,17 @@
     <div data-r="three" style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
       <div class="reveal" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #5EA079; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3D6E52;">Contributing</div>
-        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Issues and pull requests are welcome. New tools copy <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_window.xaml</span> and <span style="font-family: Consolas, monospace; font-size: 12px;">_TEMPLATE_script.py</span>, keep code and comments in English, and follow the shared style guide in <span style="font-family: Consolas, monospace; font-size: 12px;">lib/GUI/Resources/UI_GUIDELINE.md</span> — a dialog that invents its own colour won't be merged.</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Found a bug, or a workflow you wish had a tool? Open an issue — that's the fastest way to get it looked at.</div>
         <a href="https://github.com/huunhan2261/archiloom/issues" style="font-size: 13px; font-weight: 600; margin-top: 2px;">Open an issue →</a>
       </div>
       <div class="reveal reveal-delay-1" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #A3ACA8; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #5A6360;">License</div>
-        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">MIT. Use it on commercial projects, fork it, ship it inside your office standard. Keep the copyright notice; the logo and wordmark stay with ArchiLoom.</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Freeware — free to install and use, but not open source. No modifying, decompiling, or redistributing the Software without written permission. See EULA.txt for the full terms.</div>
         <div style="font-family: Consolas, monospace; font-size: 12px; color: #78827E; margin-top: 2px;">© 2026 Nhan Nguyen Huu</div>
       </div>
       <div class="reveal reveal-delay-2" style="background: #FFFFFF; border: 1px solid #E2E6E4; border-left: 3px solid #EB664B; border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B44530;">Author</div>
-        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Built by <b style="color: #1E2120;">Nhan Nguyen Huu</b>, architect and BIM lead — every tool here started as a task that ate an afternoon. Feedback from real projects is the fastest way to shape the next one.</div>
+        <div style="font-size: 13px; line-height: 1.75; color: #3F4643;">Built by <b style="color: #1E2120;">Nhan Nguyen Huu</b>, architect and BIM Specialist — every tool here started as a task that ate an afternoon. Feedback from real projects is the fastest way to shape the next one.</div>
         <a href="mailto:huunhan2261@gmail.com" style="font-size: 13px; font-weight: 600; margin-top: 2px;">huunhan2261@gmail.com</a>
       </div>
     </div>
@@ -636,7 +595,7 @@
   <footer style="padding: 24px; display: flex; justify-content: center; border-top: 1px solid #E2E6E4;">
     <div data-r="footrow" class="reveal" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
       <img src="assets/logo.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
-      <div style="flex: 1; font-size: 12px; color: #78827E;">pyRevit extension · IronPython 2.7 · not affiliated with Autodesk</div>
+      <div style="flex: 1; font-size: 12px; color: #78827E;">Native C# Revit Add-in · not affiliated with Autodesk</div>
       <a href="https://github.com/huunhan2261/archiloom" class="footer-link" style="font-size: 12px;">GitHub</a>
     </div>
   </footer>
@@ -666,9 +625,9 @@
 
   var captions = [
     "Select 2D Elements — one green band, one coral action, nothing else competing.",
-    "Batch Family Rename — before/after preview, duplicates flagged before commit.",
-    "Detail Type Excel Sync — a diff review stands between Excel and your model.",
-    "Apply Sheet Layout — one saved arrangement, a whole sheet set consistent."
+    "Batch Rename — before/after preview, duplicates flagged before commit.",
+    "Parameter Excel Sync — a diff review stands between Excel and your model.",
+    "Camwalk — the one tool here that isn't a dialog: a live, game-style fly-through."
   ];
 
   var n = slides.length;
@@ -745,229 +704,210 @@
 
 // Panel Tools showcase: demo videos + how-to steps.
 // To add a tool, append one object to TOOLS — the grid and modal render from this array only.
+// Steps are sourced from each button's LongDescription in ArchiLoomApp.cs.
 var TOOLS = [
   {
-    name: "Batch Family Rename",
-    desc: "Find, replace, prefix and suffix across families, with a before/after preview.",
-    video: "videos/batch-family-rename.mp4",
-    type: "file",
-    steps: [
-      "Select the families to rename in the Project Browser, or leave the selection empty to include every loaded family.",
-      "Open the Family panel and click Batch Family Rename.",
-      "Enter a find/replace rule, or a prefix/suffix.",
-      "Review the before/after preview — duplicate names are flagged in red.",
-      "Click Apply to commit every rename in a single transaction."
-    ]
-  },
-  {
-    name: "Detail Type Excel Sync",
-    desc: "Export detail types to Excel, edit them, and import the changes back through a diff review.",
-    video: "videos/detail-type-excel-sync.mp4",
-    type: "file",
-    steps: [
-      "Open the Detailing panel and click Detail Type Excel Sync.",
-      "Click Export to write every detail type to ArchiLoom_DetailTypes.xlsx.",
-      "Edit Type Mark and Description in Excel, then save the file.",
-      "Click Import and review the diff — only changed rows are listed.",
-      "Click Write to Model to apply the changes in a single transaction."
-    ]
-  },
-  {
-    name: "Detail Type List",
-    desc: "One searchable list of every detail type in the model, with sheet references and placed counts.",
-    video: "videos/detail-type-list.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Detail Item Layout",
-    desc: "Place and align detail items on a grid instead of nudging them one by one.",
-    video: "videos/detail-item-layout.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Detail Item Views",
-    desc: "Jump to every view where a detail item is placed, straight from the list.",
-    video: "videos/detail-item-views.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Sync Detail Item Params",
-    desc: "Push shared parameter values across matching detail items in one transaction.",
-    video: "videos/sync-detail-item-params.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Select 2D Elements",
-    desc: "Pick a 2D category, the window closes and you drag-select only that category in the view.",
-    video: "videos/select-2d-elements.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Save Sheet Layout",
-    desc: "Store the viewport arrangement of a sheet as a reusable layout.",
-    video: "videos/save-sheet-layout.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Apply Sheet Layout",
-    desc: "Drop a saved layout onto other sheets so a set stays consistent.",
-    video: "videos/apply-sheet-layout.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Manage Line Styles",
-    desc: "Review, rename and purge line styles; Quick Line Style assigns one to a selection in a keystroke.",
-    video: "videos/manage-line-styles.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
-    name: "Batch Family Type Rename",
-    desc: "The same rule engine applied one level down, at type level.",
-    video: "videos/batch-family-type-rename.mp4",
-    type: "file",
-    steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
-    ]
-  },
-  {
     name: "Family Rename",
-    desc: "Rename the family of the current selection, applied to every type it owns.",
+    desc: "Rename the family used by the selected family instance(s), applied to every type it owns.",
     video: "videos/family-rename.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Select the family instance(s) in the model, then click Family Rename.",
+      "If more than one family is selected, choose which one to rename.",
+      "Type the new name and click Rename."
     ]
   },
   {
     name: "Family Duplicate",
-    desc: "Duplicate a family and its types under a new name without leaving the model.",
+    desc: "Duplicate a family under a new name straight in the model and switch the selected instances over — no Save As, no reload.",
     video: "videos/family-duplicate.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Select the family instance(s) in the model, then click Family Duplicate.",
+      "If more than one family is selected, pick which one to duplicate.",
+      "Type the new name and click Duplicate — only the selected instances switch over, keeping their matching type."
+    ]
+  },
+  {
+    name: "Batch Rename",
+    desc: "Rename Loadable Families, Loadable Family Types, System Family Types or Materials in bulk, PowerRename-style, with a live preview and an Excel round-trip.",
+    video: "videos/batch-rename.mp4",
+    type: "file",
+    steps: [
+      "Choose a rename mode: Loadable Family, Loadable Family Type, System Family Type, or Materials.",
+      "Optionally select instances first to pre-check their families/types, then pick categories and check the rows to rename.",
+      "Set Find/Replace (regex supported), or a Prefix/Suffix — the preview updates live.",
+      "Click Apply to commit, or Export Excel to edit New Name in a spreadsheet and Import Excel to bring the values back."
+    ]
+  },
+  {
+    name: "Purge Family Params",
+    desc: "List unused family parameters and delete them — ones still referenced elsewhere have their formula/value cleared instead and are kept.",
+    video: "videos/purge-family-params.mp4",
+    type: "file",
+    steps: [
+      "Open a family document and click Purge Family Params.",
+      "Parameters that look in use are greyed out but shown for reference.",
+      "Check the parameters to purge and click Purge Selected.",
+      "Ones still referenced elsewhere have their formula/value cleared instead and are reported as Kept."
+    ]
+  },
+  {
+    name: "Detail Item Lookup",
+    desc: "List every view containing the selected detail item type, with its sheet and instance count, to review one by one.",
+    video: "videos/detail-item-lookup.mp4",
+    type: "file",
+    steps: [
+      "Select a detail item instance, then click Detail Item Lookup.",
+      "Double-click a row (or click Open View) to jump to that view and highlight the item — the window stays open so you can review more."
     ]
   },
   {
     name: "Detail Item From Selection",
-    desc: "Turn the selected 2D geometry into a new detail item family, placed back in the view.",
+    desc: "Turn selected detail lines, filled regions or detail components into a new detail item family, loaded straight back in.",
     video: "videos/detail-item-from-selection.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Select the detail lines, filled regions or detail components, then click Detail Item From Selection.",
+      "Type a family name, pick a template, and choose the origin — a bounding-box anchor or a point in the view.",
+      "Optionally check \"Delete selected elements\" to swap them in place.",
+      "Click Create and save the .rfa — it loads straight into the project."
     ]
   },
   {
-    name: "Purge Family Parameters",
-    desc: "List unused family parameters and remove them, skipping anything bound to a schedule.",
-    video: "videos/purge-family-parameters.mp4",
+    name: "Select 2D Elements",
+    desc: "Rectangle-select only one kind of 2D element at a time — tags, detail items, filled regions or lines.",
+    video: "videos/select-2d-elements.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Click Select 2D Elements, then click a tile (or press 1–4) to pick a kind of element — Tags, Detail Items, Filled Region or Lines.",
+      "Drag a box over the view — only that kind gets selected. Esc cancels."
     ]
   },
   {
-    name: "Rotate Multiple",
-    desc: "Rotate every selected element around its own centre by one angle.",
-    video: "videos/rotate-multiple.mp4",
+    name: "Quick Line Style",
+    desc: "Remap the line style of selected lines/filled regions — group by current style, map each group to a new one in one pass.",
+    video: "videos/quick-line-style.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Select lines or filled regions, then click Quick Line Style.",
+      "Pick a target line style per row (or \"No change\"), then click Run.",
+      "Use Manage Favorites to set which styles show up as mapping targets."
     ]
   },
   {
-    name: "Category Filter",
-    desc: "Narrow a mixed selection down to a single category before running anything else.",
-    video: "videos/category-filter.mp4",
+    name: "Save Sheet Guide",
+    desc: "Capture guide lines drawn on the active sheet and save them as a named preset for reuse on other sheets.",
+    video: "videos/save-sheet-guide.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Draw guide lines directly on the active sheet, then click Save Sheet Guide.",
+      "Click Add New Preset to save them under a name.",
+      "Pick an existing preset to Overwrite, Rename or Delete it."
     ]
   },
   {
-    name: "Tag Detail Items",
-    desc: "Tag every untagged detail item in the view with the tag family you pick.",
-    video: "videos/tag-detail-items.mp4",
+    name: "Apply Sheet Guide",
+    desc: "Recreate a saved sheet guide as detail lines on target sheets, so new viewports line up across a set.",
+    video: "videos/apply-sheet-guide.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Select sheet(s) in the Project Browser (or leave the active sheet open), then click Apply Sheet Guide.",
+      "Pick a preset and click Apply — re-applying always clears old guide lines first, so it never leaves duplicates.",
+      "Move or resize viewports to line up with the recreated guide lines, or click \"Clear only\" to just remove them."
     ]
   },
   {
-    name: "Resize Filled Region",
-    desc: "Resize a filled region numerically in mm instead of dragging its boundary.",
-    video: "videos/resize-filled-region.mp4",
+    name: "Missing Tag Check",
+    desc: "Find every element of a category — or your own saved rule — with no tag in the active view, from a dockable pane you can highlight from.",
+    video: "videos/missing-tag-check.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Activate a view, click Missing Tag Check, then pick a category (1–4) or Saved Rules (5).",
+      "Saved Rules: build a rule from a category plus conditions, then Run Rule to check the active view — rules carry over to the next project.",
+      "Click a row to select it in Revit (double-click to zoom); the Type/Level chips filter the list, and Highlight paints the selected rows.",
+      "Apply Override bakes the current selection permanently; Ignore Selected greys out rows that don't need a tag."
     ]
   },
   {
-    name: "Relayout Settings",
-    desc: "Spacing and alignment defaults shared by the layout tools.",
-    video: "videos/relayout-settings.mp4",
+    name: "Highlight Annotations",
+    desc: "Colour-override every instance of chosen annotation categories in the active view, so gaps stand out visually.",
+    video: "videos/highlight-annotations.mp4",
     type: "file",
     steps: [
-      "TODO: add step 1.",
-      "TODO: add step 2.",
-      "TODO: add step 3."
+      "Activate a view and click Highlight Annotations — a dockable pane opens with a tile for each annotation category present in the view.",
+      "Double-click a tile to highlight that category; double-click again to clear it. Multiple tiles can be highlighted at once.",
+      "Click the colour swatch to change the highlight colour, or Clear All to reset every category."
+    ]
+  },
+  {
+    name: "Color Swatch Highlight",
+    desc: "Colour-override elements by a parameter value using saved, reusable rule sets — unique values, keywords or number ranges.",
+    video: "videos/color-swatch-highlight.mp4",
+    type: "file",
+    steps: [
+      "Activate a view, click Color Swatch Highlight, then pick a category and parameter.",
+      "Add rules by hand, or click Generate to auto-build one rule per unique value, number range, or keyword — each gets a colour from the palette.",
+      "Reorder rules with the up/down arrows (the top rule wins first), then click Apply to paint the view.",
+      "Save the rule set by name to reuse on another project; Clear removes every override this tool applied."
+    ]
+  },
+  {
+    name: "3D Crop From View",
+    desc: "Match your Default 3D View's section box to the crop region of the active 2D view, for a quick QA look.",
+    video: "videos/3d-crop-from-view.mp4",
+    type: "file",
+    steps: [
+      "Activate a 2D view (plan, section or elevation) with Crop Region turned on.",
+      "Click 3D Crop From View.",
+      "Your Default 3D View opens with a matching section box — running it again from another view updates that same 3D view instead of creating a new one."
+    ]
+  },
+  {
+    name: "Parameter Excel Sync",
+    desc: "Push and pull instance or type parameter values between Revit and Excel, filtered by category, workset, family or selection.",
+    video: "videos/parameter-excel-sync.mp4",
+    type: "file",
+    steps: [
+      "Click Parameter Excel Sync, pick a filter (category, workset, family or current selection), then click Next.",
+      "Choose Instance or Type, tick the parameters to sync, then click Export to Excel.",
+      "Edit the values in Excel and save — keep the file open — then click Pull to write them back into the model, or Push to re-export the current Revit values."
+    ]
+  },
+  {
+    name: "Filter Audit",
+    desc: "Audit every view filter in the project — where it's applied, its rules — then review, rename, edit or purge the unused ones.",
+    video: "videos/filter-audit.mp4",
+    type: "file",
+    steps: [
+      "Click Filter Audit to open the table — unused filters (not applied to any view or view template) are highlighted.",
+      "Check unused filters and click Purge Selected, or click Rename to rename one.",
+      "Click Edit Rule to open the category and condition editor for a filter and save changes directly back onto it — nested AND/OR sets are supported.",
+      "Use Search to narrow by name, and Export to Excel to write the whole audit table out for review."
+    ]
+  },
+  {
+    name: "View Template Audit",
+    desc: "Audit every view template by how many views actually use it, then review, rename or purge the unused ones.",
+    video: "videos/view-template-audit.mp4",
+    type: "file",
+    steps: [
+      "Click View Template Audit to open the table — unused templates (not applied to any view) are highlighted.",
+      "Check unused templates and click Purge Selected, or click Rename to rename one.",
+      "Click Used In to see which views use a template — double-click a row (or Open View) to jump there.",
+      "Use Search to narrow by name, and Export to Excel to write the whole audit table out for review."
+    ]
+  },
+  {
+    name: "Camwalk",
+    desc: "Turn the active 3D camera view into a live fly-through with an on-screen HUD or WASD, and bookmark viewpoints as you go.",
+    video: "videos/camwalk.mp4",
+    type: "file",
+    steps: [
+      "Activate a 3D camera view, frame it, then click Camwalk.",
+      "Press and hold the Move/Look buttons (or W/A/S/D + Space/Shift + arrows) to fly — combine several for diagonal movement.",
+      "Adjust move speed with the slider or [ / ]; X resets tilt, Z fits the crop to the window.",
+      "Press Save Viewpoint (C) to bookmark a spot, or Viewpoints (V) to browse and rename saved ones."
     ]
   }
 ];
