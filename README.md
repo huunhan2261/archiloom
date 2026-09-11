@@ -5,7 +5,7 @@
 **A Revit ribbon tab of small, sharp tools for detailing and family housekeeping.**
 
 [![.NET 8](https://img.shields.io/badge/.NET-8-5EA079?style=flat-square)](https://dotnet.microsoft.com/)
-[![Revit](https://img.shields.io/badge/Revit-2026-3F4643?style=flat-square)](https://www.autodesk.com/products/revit)
+[![Revit](https://img.shields.io/badge/Revit-3F4643?style=flat-square)](https://www.autodesk.com/products/revit)
 [![License: Freeware](https://img.shields.io/badge/License-Freeware%20(EULA)-EB664B?style=flat-square)](EULA.txt)
 
 [**Landing Page**](https://huunhan2261.github.io/archiloom/) · [**Download**](https://github.com/huunhan2261/archiloom/releases/latest) · [**Issues**](https://github.com/huunhan2261/archiloom/issues)

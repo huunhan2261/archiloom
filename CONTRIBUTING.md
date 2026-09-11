@@ -6,7 +6,7 @@ ArchiLoom is closed-source freeware (see [EULA.txt](EULA.txt)) — the source is
 
 Open an [Issue](https://github.com/huunhan2261/archiloom/issues) and include:
 
-- Your **Revit version** (ArchiLoom targets Revit 2026).
+- Your **Revit version**.
 - Which **tool** on the ArchiLoom tab you were using.
 - What you expected vs. what happened. A screenshot or short screen recording helps a lot.
 - Steps to reproduce, if you can reliably trigger it.
