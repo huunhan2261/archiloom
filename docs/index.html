@@ -924,8 +924,9 @@ var TOOLS = [
 
   function buildVideoEl(tool) {
     if (tool.type === "youtube") {
+      var sep = tool.video.indexOf("?") === -1 ? "?" : "&";
       var iframe = document.createElement("iframe");
-      iframe.src = tool.video;
+      iframe.src = tool.video + sep + "autoplay=1&mute=1";
       iframe.title = tool.name + " demo video";
       iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
       iframe.allowFullscreen = true;
@@ -935,7 +936,9 @@ var TOOLS = [
     video.src = tool.video;
     video.controls = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = "auto";
+    video.autoplay = true;
+    video.muted = true;
     return video;
   }
 
