@@ -67,7 +67,8 @@ new colors.
 - Real links (GitHub repo, releases, issues) are hardcoded in `docs/index.html`;
   update them there if the repo ever moves.
 - Demo videos referenced by the `TOOLS` array in `docs/index.html` (`videos/*.mp4`)
-  are real screen recordings of the C# addin, committed to the repo. Only some tools
-  have one so far; the remaining `TOOLS` entries point at files that don't exist yet,
-  and their modal shows an empty player until a recording is dropped in —
-  see `docs/videos/README.md`.
+  are real screen recordings of the C# addin, committed to the repo. Every tool has
+  one; a new `TOOLS` entry added without a matching file shows an empty player until
+  a recording is dropped in — see `docs/videos/README.md`. The recordings aren't all
+  the same aspect ratio, so the modal sizes its frame from each file's own dimensions
+  on `loadedmetadata` rather than assuming 16/9.
