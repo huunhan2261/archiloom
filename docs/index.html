@@ -25,6 +25,16 @@
   .btn-coffee { background: #FFFFFF; border: 1px solid #B9D5C5; color: #3D6E52; }
   .btn-coffee:hover { background: #EEF5F1; border-color: #5EA079; color: #2F5A41; }
 
+  /* Supported Revit versions - deliberately loud, it is the first thing people check */
+  .version-strip { display: flex; max-width: 560px; align-items: center; flex-wrap: wrap; gap: 10px; background: #FFFFFF; border: 1px solid #B9D5C5; border-left: 4px solid #5EA079; border-radius: 4px; padding: 12px 16px; }
+  .version-label { font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #3D6E52; }
+  .version-pill { font-family: Consolas, monospace; font-size: 14px; font-weight: 700; color: #FFFFFF; background: #5EA079; border-radius: 3px; padding: 4px 10px; line-height: 1.2; }
+  .version-note { font-size: 12px; line-height: 1.5; color: #5A6360; flex-basis: 100%; }
+  @media (max-width: 420px) {
+    .version-strip { gap: 8px; padding: 12px 14px; }
+    .version-pill { font-size: 13px; padding: 4px 8px; }
+  }
+
   .tool-card { position: relative; overflow: hidden; border: 1px solid #E2E6E4; background: #FFFFFF; transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease; }
   .tool-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #EB664B; transform: scaleY(0); transform-origin: top; transition: transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
   .tool-card:hover { border-color: #F5B8A9; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(235,102,75,0.1); }
@@ -152,7 +162,13 @@
           <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">GitHub</a>
           <a href="https://buymeacoffee.com/huunhan2261" class="btn-coffee" style="height: 40px; padding: 0 18px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><img src="assets/icons/buy-me-a-coffee.png" alt="" aria-hidden="true" style="width: 20px; height: 20px; display: block;">Buy me a coffee</a>
         </div>
-        <div style="font-size: 12px; color: #78827E;">Available for Revit 2024, 2025 and 2026 — the installer detects which you have and sets up each one.</div>
+        <div class="version-strip">
+          <span class="version-label">Works with Revit</span>
+          <span class="version-pill">2024</span>
+          <span class="version-pill">2025</span>
+          <span class="version-pill">2026</span>
+          <span class="version-note">The installer detects which versions you have and sets up each one.</span>
+        </div>
         <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
             <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">20</div>
