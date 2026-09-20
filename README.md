@@ -16,7 +16,7 @@
 
 ## What is ArchiLoom?
 
-ArchiLoom is a native C# Revit add-in — one Revit ribbon tab packed with 19 tools across 5 panels, built for the work nobody schedules time for: renaming families in bulk, syncing parameters through Excel, laying out detail items, auditing filters/view templates, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.
+ArchiLoom is a native C# Revit add-in — one Revit ribbon tab packed with 20 tools across 5 working panels (plus About), built for the work nobody schedules time for: renaming families in bulk, syncing parameters through Excel, laying out detail items, renumbering sheets, auditing filters/view templates, and reusing sheet layouts. Every dialog follows one UI standard, so you learn the pattern once.
 
 ### Panels
 
@@ -24,14 +24,17 @@ ArchiLoom is a native C# Revit add-in — one Revit ribbon tab packed with 19 to
 |---|---|---|
 | **Family** | 4 | Naming and cleanup for families and types — bulk edits with a preview you can trust |
 | **Detailing** | 6 | Detail items, line styles and sheet layouts — the repetitive half of documentation |
-| **Checking** | 7 | Auditing and QA: missing tags, unused filters/view templates, parameter sync, highlighting |
+| **Checking** | 5 | QA on the model in front of you: missing tags, annotation/parameter highlighting, 3D crop, Excel parameter sync |
+| **Auditing** | 4 | Project-wide housekeeping: filter and view-template audits, sheet renumbering, system-definition renames |
 | **Visual** | 1 | Camwalk — turn the active 3D view into a live fly-through |
 | **About** | 1 | Opens this landing page |
 
 ## Installation
 
-1. Download the latest installer from [Releases](https://github.com/huunhan2261/archiloom/releases/latest) (`ArchiLoom-Setup.exe` or `.msi`).
-2. Run it — no admin rights needed, it installs for the current Windows user only and registers ArchiLoom as a Revit add-in.
+Supported Revit versions: **2024, 2025 and 2026**. The `.msi` installer detects which of them are on the machine and registers ArchiLoom for each one.
+
+1. Download the latest installer from [Releases](https://github.com/huunhan2261/archiloom/releases/latest) (`ArchiLoom.msi`, or `ArchiLoom-Setup.exe` for a Revit 2026-only install).
+2. Close Revit, then run it — no admin rights needed, it installs for the current Windows user only and registers ArchiLoom as a Revit add-in.
 3. Open Revit. The **ArchiLoom** tab appears on the ribbon.
 
 ## Contributing

@@ -91,19 +91,19 @@
       <div data-anim style="display: flex; flex-direction: column; gap: 22px;">
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">Native Revit add-in · C# / .NET 8</div>
         <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em; text-wrap: balance;">Detailing, family housekeeping, Checking, and Camwalk.</h1>
-        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px; text-wrap: pretty;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, laying out detail items and sheet guides, and auditing tags, filters and view templates before you issue drawings. Then there's Camwalk — the one tool on this ribbon that isn't a dialog: a live, game-style fly-through camera for walking your 3D views. Every dialog follows one UI standard, so you learn the pattern once.</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px; text-wrap: pretty;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, laying out detail items and sheet guides, renumbering a sheet set, and auditing tags, filters and view templates before you issue drawings. Then there's Camwalk — the one tool on this ribbon that isn't a dialog: a live, game-style fly-through camera for walking your 3D views. Every dialog follows one UI standard, so you learn the pattern once.</p>
         <div style="display: flex; gap: 10px; align-items: center; padding-top: 4px;">
           <a href="{{ releasesUrl }}" style="height: 40px; padding: 0 22px; border-radius: 4px; background: #EB664B; color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center; border-bottom: none;" style-hover="background: #D8543B; color: #FFFFFF;">Download latest</a>
           <a href="{{ repoUrl }}" style="height: 40px; padding: 0 22px; border-radius: 4px; background: #FFFFFF; border: 1px solid #CBD1CE; color: #3F4643; font-size: 14px; font-weight: 600; display: flex; align-items: center; border-bottom: 1px solid #CBD1CE; box-sizing: border-box;" style-hover="background: #EFF2F0; border-color: #A3ACA8; color: #1E2120;">GitHub</a>
         </div>
-        <div style="font-size: 12px; color: #78827E;">Currently available for Revit 2026 — more versions planned.</div>
+        <div style="font-size: 12px; color: #78827E;">Available for Revit 2024, 2025 and 2026 — the installer detects which you have and sets up each one.</div>
         <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
-            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">18</div>
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">20</div>
             <div style="font-size: 12px; color: #78827E;">tools</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
-            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">4</div>
+            <div style="font-family: Consolas, monospace; font-size: 22px; font-weight: 600; color: #1E2120;">5</div>
             <div style="font-size: 12px; color: #78827E;">ribbon panels</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 14px;">
@@ -458,6 +458,8 @@ class Component extends DCLogic {
       "Parameter Excel Sync": "parameter-excel-sync.png",
       "Filter Audit": "filter-audit.png",
       "View Template Audit": "view-template-audit.png",
+      "Sheet Numbering": "sheet-numbering.png",
+      "System Batch Rename": "system-batch-rename.png",
       "Camwalk": "camwalk.png"
     };
     const withSlots = (arr) => arr.map((pn) => Object.assign({}, pn, {
@@ -533,16 +535,25 @@ class Component extends DCLogic {
         },
         {
           name: "Checking",
-          blurb: "Auditing and QA on the model you already have — catch gaps before you issue drawings.",
-          count: "7 tools",
+          blurb: "Tag, colour and section-box QA on the model in front of you — catch gaps before you issue drawings.",
+          count: "5 tools",
           tools: [
             { name: "Missing Tag Check", desc: "Find every element of a category — or your own saved rule — with no tag in the active view, from a dockable pane you can highlight from." },
             { name: "Highlight Annotations", desc: "Colour-override every instance of chosen annotation categories in the active view, so gaps stand out visually." },
             { name: "Color Swatch Highlight", desc: "Colour-override elements by a parameter value using saved, reusable rule sets — unique values, keywords or number ranges." },
             { name: "3D Crop From View", desc: "Match your Default 3D View's section box to the crop region of the active 2D view, for a quick QA look." },
-            { name: "Parameter Excel Sync", desc: "Push and pull instance or type parameter values between Revit and Excel, filtered by category, workset, family or selection." },
+            { name: "Parameter Excel Sync", desc: "Push and pull instance or type parameter values between Revit and Excel, filtered by category, workset, family or selection." }
+          ]
+        },
+        {
+          name: "Auditing",
+          blurb: "Project-wide housekeeping — the filters, templates, sheet numbers and system definitions that pile up over a job.",
+          count: "4 tools",
+          tools: [
             { name: "Filter Audit", desc: "Audit every view filter in the project — where it's applied, its rules — then review, rename, edit or purge the unused ones." },
-            { name: "View Template Audit", desc: "Audit every view template by how many views actually use it, then review, rename or purge the unused ones." }
+            { name: "View Template Audit", desc: "Audit every view template by how many views actually use it, then review, rename or purge the unused ones." },
+            { name: "Sheet Numbering", desc: "Batch-renumber selected sheets — find/replace, prefix/suffix, increment, resequence and padding, all previewed before anything is written." },
+            { name: "System Batch Rename", desc: "Batch rename line patterns, fill patterns, filters, view templates, view types or text note types — the project's system definitions." }
           ]
         },
         {
