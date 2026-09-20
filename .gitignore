@@ -29,12 +29,5 @@ cursor-arch-24.png
 cursor-arch-32.png
 cursor-poly.png
 
-# === Uploads / design staging (already in docs/assets/) ===
-project/uploads/
-
-# === Project wrapper (design staging folder) ===
-project/*.dc.html
-project/support.js
-project/.thumbnail
-project/cursor-*.png
-project/Canvas.dc.html
+# === Project wrapper (local design/staging folder, never part of the site) ===
+project/
