@@ -93,7 +93,7 @@
   .tool-modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px; }
   .tool-modal.is-open { display: flex; }
   .tool-modal-backdrop { position: absolute; inset: 0; background: rgba(30,33,32,0.55); }
-  .tool-modal-panel { position: relative; width: 100%; max-width: 720px; max-height: 90vh; overflow-y: auto; background: #FFFFFF; border-radius: 8px; box-shadow: 0 24px 60px rgba(30,33,32,0.3); }
+  .tool-modal-panel { position: relative; width: 100%; max-width: 960px; max-height: 90vh; overflow-y: auto; background: #FFFFFF; border-radius: 8px; box-shadow: 0 24px 60px rgba(30,33,32,0.3); }
   .tool-modal-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 4px; border: 1px solid #E2E6E4; background: #FFFFFF; color: #3F4643; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
   .tool-modal-close:hover { background: #EFF2F0; color: #1E2120; }
   .tool-modal-video { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #1E2120; border-radius: 8px 8px 0 0; overflow: hidden; }
@@ -1015,6 +1015,12 @@ var TOOLS = [
     video.preload = "auto";
     video.autoplay = true;
     video.muted = true;
+    // Recordings aren't all 16/9 (e.g. 1400x850) — size the frame to the file so it never letterboxes.
+    video.addEventListener("loadedmetadata", function () {
+      if (video.videoWidth && video.videoHeight) {
+        videoHost.style.aspectRatio = video.videoWidth + " / " + video.videoHeight;
+      }
+    });
     return video;
   }
 
@@ -1031,6 +1037,7 @@ var TOOLS = [
     });
 
     videoHost.innerHTML = "";
+    videoHost.style.aspectRatio = ""; // back to the 16/9 default until this file's metadata lands
     videoHost.appendChild(buildVideoEl(tool));
 
     modal.classList.add("is-open");
