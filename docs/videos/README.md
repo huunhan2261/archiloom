@@ -21,8 +21,9 @@ in `TOOLS`.
 Tools that use `type: "youtube"` don't need a file here — their `video`
 field is a YouTube embed URL instead.
 
-Recording size: the existing captures are 1400x850 (camwalk is 1920x1040).
+Recording size: the existing captures are 1400x850 (Family and Detailing),
+1500x950 (Checking), and 1920x1040 (camwalk).
 Any aspect ratio works — the modal reads each file's real dimensions on
 `loadedmetadata` and sizes its frame to match — but keeping new recordings at
-1400x850 keeps the demos consistent. Keep files well under GitHub's 100 MB limit;
+one size per batch keeps the demos consistent. Keep files well under GitHub's 100 MB limit;
 they are committed straight to the repo and served by GitHub Pages.
