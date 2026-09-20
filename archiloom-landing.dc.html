@@ -92,9 +92,10 @@
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">Native Revit add-in · C# / .NET 8</div>
         <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em; text-wrap: balance;">Detailing, family housekeeping, Checking, and Camwalk.</h1>
         <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px; text-wrap: pretty;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, laying out detail items and sheet guides, renumbering a sheet set, and auditing tags, filters and view templates before you issue drawings. Then there's Camwalk — the one tool on this ribbon that isn't a dialog: a live, game-style fly-through camera for walking your 3D views. Every dialog follows one UI standard, so you learn the pattern once.</p>
-        <div style="display: flex; gap: 10px; align-items: center; padding-top: 4px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 4px;">
           <a href="{{ releasesUrl }}" style="height: 40px; padding: 0 22px; border-radius: 4px; background: #EB664B; color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center; border-bottom: none;" style-hover="background: #D8543B; color: #FFFFFF;">Download latest</a>
           <a href="{{ repoUrl }}" style="height: 40px; padding: 0 22px; border-radius: 4px; background: #FFFFFF; border: 1px solid #CBD1CE; color: #3F4643; font-size: 14px; font-weight: 600; display: flex; align-items: center; border-bottom: 1px solid #CBD1CE; box-sizing: border-box;" style-hover="background: #EFF2F0; border-color: #A3ACA8; color: #1E2120;">GitHub</a>
+          <a href="{{ coffeeUrl }}" style="height: 40px; padding: 0 18px; border-radius: 4px; background: #FFFFFF; border: 1px solid #B9D5C5; color: #3D6E52; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #B9D5C5; box-sizing: border-box;" style-hover="background: #EEF5F1; border-color: #5EA079; color: #2F5A41;"><img src="uploads/icons/buy-me-a-coffee.png" alt="" aria-hidden="true" style="width: 20px; height: 20px; display: block;">Buy me a coffee</a>
         </div>
         <div style="font-size: 12px; color: #78827E;">Available for Revit 2024, 2025 and 2026 — the installer detects which you have and sets up each one.</div>
         <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
@@ -245,6 +246,7 @@
     <div data-anim data-r="footrow" style="position: relative; z-index: 1; width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
       <img src="uploads/Logo w Text.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
       <div style="flex: 1; font-size: 12px; color: #78827E;">Native C# Revit Add-in · not affiliated with Autodesk</div>
+      <a href="{{ coffeeUrl }}" style="font-size: 12px; color: #5A6360; border-bottom-color: #CBD1CE;" style-hover="color: #1E2120; border-bottom-color: #78827E;">Buy me a coffee</a>
       <a href="{{ repoUrl }}" style="font-size: 12px; color: #5A6360; border-bottom-color: #CBD1CE;" style-hover="color: #1E2120; border-bottom-color: #78827E;">GitHub</a>
     </div>
   </footer>
@@ -507,6 +509,7 @@ class Component extends DCLogic {
       repoUrl: repo,
       releasesUrl: repo + "/releases/latest",
       issuesUrl: repo + "/issues",
+      coffeeUrl: "https://buymeacoffee.com/huunhan2261",
       showToolCounts: this.props.showToolCounts ?? true,
       panels: withSlots([
         {

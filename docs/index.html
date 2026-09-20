@@ -22,6 +22,9 @@
   .btn-primary { background: #EB664B; color: #FFFFFF; border: none; }
   .btn-primary:hover { background: #D8543B; }
 
+  .btn-coffee { background: #FFFFFF; border: 1px solid #B9D5C5; color: #3D6E52; }
+  .btn-coffee:hover { background: #EEF5F1; border-color: #5EA079; color: #2F5A41; }
+
   .tool-card { position: relative; overflow: hidden; border: 1px solid #E2E6E4; background: #FFFFFF; transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease; }
   .tool-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #EB664B; transform: scaleY(0); transform-origin: top; transition: transform 240ms cubic-bezier(0.22,0.61,0.36,1); }
   .tool-card:hover { border-color: #F5B8A9; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(235,102,75,0.1); }
@@ -144,9 +147,10 @@
         <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #78827E;">Native Revit add-in · C# / .NET 8</div>
         <h1 data-r="h1" style="margin: 0; font-size: 46px; line-height: 1.12; font-weight: 600; color: #1E2120; letter-spacing: -0.015em;">Detailing, family housekeeping, Checking, and Camwalk.</h1>
         <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A6360; max-width: 560px;">ArchiLoom is a Revit ribbon tab of small, sharp tools for the work nobody schedules time for: renaming families in bulk, laying out detail items and sheet guides, renumbering a sheet set, and auditing tags, filters and view templates before you issue drawings. Then there's Camwalk — the one tool on this ribbon that isn't a dialog: a live, game-style fly-through camera for walking your 3D views. Every dialog follows one UI standard, so you learn the pattern once.</p>
-        <div style="display: flex; gap: 10px; align-items: center; padding-top: 4px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-top: 4px;">
           <a href="https://github.com/huunhan2261/archiloom/releases/latest" class="btn-primary" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">Download latest</a>
           <a href="https://github.com/huunhan2261/archiloom" class="btn-outline" style="height: 40px; padding: 0 22px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center;">GitHub</a>
+          <a href="https://buymeacoffee.com/huunhan2261" class="btn-coffee" style="height: 40px; padding: 0 18px; border-radius: 4px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><img src="assets/icons/buy-me-a-coffee.png" alt="" aria-hidden="true" style="width: 20px; height: 20px; display: block;">Buy me a coffee</a>
         </div>
         <div style="font-size: 12px; color: #78827E;">Available for Revit 2024, 2025 and 2026 — the installer detects which you have and sets up each one.</div>
         <div style="display: flex; gap: 32px; padding-top: 14px; border-top: 1px solid #E2E6E4; margin-top: 8px;">
@@ -643,6 +647,7 @@
     <div data-r="footrow" class="reveal" style="width: 100%; max-width: 1120px; display: flex; align-items: center; gap: 24px;">
       <img src="assets/logo.png" alt="ArchiLoom" style="height: 18px; width: auto; display: block;">
       <div style="flex: 1; font-size: 12px; color: #78827E;">Native C# Revit Add-in · not affiliated with Autodesk</div>
+      <a href="https://buymeacoffee.com/huunhan2261" class="footer-link" style="font-size: 12px;">Buy me a coffee</a>
       <a href="https://github.com/huunhan2261/archiloom" class="footer-link" style="font-size: 12px;">GitHub</a>
     </div>
   </footer>
